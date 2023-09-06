@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itam.Dima.Domain", "back\Itam.Dima.Domain\Itam.Dima.Domain.csproj", "{ECE20C94-FAC0-4BD2-883C-F93DBE0A16CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itam.Dima.Infrastructure", "back\Itam.Dima.Infrastructure\Itam.Dima.Infrastructure.csproj", "{4E76E2A5-489B-4CBD-9BD8-8130A6539B64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itam.Dima.Api", "back\Itam.Dima.Api\Itam.Dima.Api.csproj", "{219C46F7-132B-4A1D-87CE-A3A19E8A22B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{ECE20C94-FAC0-4BD2-883C-F93DBE0A16CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECE20C94-FAC0-4BD2-883C-F93DBE0A16CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECE20C94-FAC0-4BD2-883C-F93DBE0A16CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E76E2A5-489B-4CBD-9BD8-8130A6539B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E76E2A5-489B-4CBD-9BD8-8130A6539B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E76E2A5-489B-4CBD-9BD8-8130A6539B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E76E2A5-489B-4CBD-9BD8-8130A6539B64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219C46F7-132B-4A1D-87CE-A3A19E8A22B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219C46F7-132B-4A1D-87CE-A3A19E8A22B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219C46F7-132B-4A1D-87CE-A3A19E8A22B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219C46F7-132B-4A1D-87CE-A3A19E8A22B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
