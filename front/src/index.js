@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {HackathonsPage} from "./pages/HackathonsPage";
 import {CreateHackathonPage} from "./pages/CreateHackathonPage";
+import {AuthorizationPage} from "./pages/AuthorizationPage";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
                 path: "/participant/:id",
                 element: <div>Профиль участника</div>,
             },
+            {
+                path:"/login",
+                element: <AuthorizationPage/>
+            }
         ]
     },
 
