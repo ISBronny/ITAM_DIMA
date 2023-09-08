@@ -8,17 +8,17 @@ export const TeamsPage = () => {
     let teams = [
         {
             name: "Team 1",
-            description: "HASudihj HADSUIhai hduahuisdh usahiodjaoiHu sdhuiaohsdui. AHSDU(jd0iajioj ~!!!! jdisajkpo",
+            description: "Good boy",
             imageUrl: "https://c4.wallpaperflare.com/wallpaper/223/988/977/minimalism-dog-black-background-picture-dog-hd-wallpaper-preview.jpg"
         },
         {
             name: "Team 2",
-            description: "HASudihj HADSUIhai hduahuisdh usahiodjaoiHu sdhuiaohsdui. AHSDU(jd0iajioj ~!!!! jdisajkpo",
+            description: "God boy",
             imageUrl: "https://img.freepik.com/free-photo/portrait-lovely-dog-looking-away_23-2148366865.jpg?w=1380&t=st=1694209503~exp=1694210103~hmac=3e58002b614c17c5e9ef1e1d9e8e6018f179f4a8d100b484287a24b8db5b0a2e"
         },
         {
             name: "Team 3",
-            description: "HASudihj HADSUIhai hduahuisdh usahiodjaoiHu sdhuiaohsdui. AHSDU(jd0iajioj ~!!!! jdisajkpo",
+            description: "Model boy",
             imageUrl: "https://c4.wallpaperflare.com/wallpaper/484/836/988/labrador-retriever-yellow-labrador-retriever-wallpaper-preview.jpg"
         }
     ] //Получить с бэка
@@ -26,21 +26,17 @@ export const TeamsPage = () => {
     return (
         <>
             <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Команды</h2>
-            <div className="">
-                <NavLink to={"/hackathon/create"}
-                         className={({ isActive, isPending }) =>
-                             isActive
-                                 ? "bg-purple-700 text-white rounded-md px-3 py-2 text-sm font-medium absolute right-8"
-                                 : "text-gray-300 hover:bg-purple-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                         }>Создать команду</NavLink>
-                <div>
-                </div>
-                {teams.map(h => <TeamCard
-                    name={h.name}
-                    description={h.description}
-                    imageUrl={h.imageUrl}
-                />)}
-            </div>
+            <NavLink to={"/hackathon/create"}
+                     className={({ isActive, isPending }) =>
+                         isActive
+                             ? "bg-purple-700 text-white rounded-md px-3 py-2 text-sm font-medium absolute right-8"
+                             : "text-gray-300 hover:bg-purple-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                     }>Создать команду</NavLink>
+            {teams.map(h => <TeamCard
+                name={h.name}
+                description={h.description}
+                imageUrl={h.imageUrl}
+            />)}
         </>
     )
 }
