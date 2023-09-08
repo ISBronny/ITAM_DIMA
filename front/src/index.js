@@ -7,6 +7,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {HackathonsPage} from "./pages/HackathonsPage";
 import {CreateHackathonPage} from "./pages/CreateHackathonPage";
 import {AuthorizationPage} from "./pages/AuthorizationPage";
+import {ProfilePage} from "./pages/ProfilePage";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path:"/login",
                 element: <AuthorizationPage/>
+            },
+            {
+                path:"/profile",
+                element: <ProfilePage/>
             }
         ]
     },
