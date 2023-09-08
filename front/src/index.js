@@ -8,6 +8,7 @@ import {HackathonsPage} from "./pages/HackathonsPage";
 import {CreateHackathonPage} from "./pages/CreateHackathonPage";
 import {AuthorizationPage} from "./pages/AuthorizationPage";
 import {ProfilePage} from "./pages/ProfilePage";
+import {TeamsPage} from "./pages/TeamsPage"
 
 const router = createBrowserRouter([
     {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/teams",
-                element: <div>Список команд</div>,
+                element: <TeamsPage/>,
             },
             {
                 path: "/team/:id",

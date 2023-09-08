@@ -1,6 +1,7 @@
-
-
-
+import {
+    createBrowserRouter, Link, NavLink, Outlet,
+    RouterProvider,
+} from "react-router-dom";
 
 export const HackathonsPage = () => {
 
@@ -25,7 +26,15 @@ export const HackathonsPage = () => {
     return (
         <>
             <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Хакатоны</h2>
-            <div>
+            <div className="">
+                <NavLink to={"/hackathon/create"}
+                         className={({ isActive, isPending }) =>
+                             isActive
+                                 ? "bg-purple-700 text-white rounded-md px-3 py-2 text-sm font-medium absolute right-8"
+                                 : "text-gray-300 hover:bg-purple-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                         }>Добавить Хакатон</NavLink>
+                <div>
+            </div>
                 {hacks.map(h => <HackathonCard
                     name={h.name}
                     description={h.description}
