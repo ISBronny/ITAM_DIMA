@@ -10,9 +10,9 @@ import {
 
 function App() {
   return (
-        <div className="App">
+        <div className="App dark:bg-gray-800 min-h-[100vh]">
           <div className="min-h-full">
-            <nav className="bg-gray-800">
+            <nav className="bg-gray-800 dark:bg-gray-900">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
