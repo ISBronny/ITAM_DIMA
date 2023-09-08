@@ -21,19 +21,19 @@ function App() {
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        <NavLink to={"/teams"}
+                        <NavLink to={"/"}
                                  className={({ isActive, isPending }) =>
                                      isActive
                                          ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                                          : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                                  }>Хакатоны</NavLink>
-                        <NavLink to={"/teams1"}
+                        <NavLink to={"/teams"}
                                  className={({ isActive, isPending }) =>
                                      isActive
                                          ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                                          : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                                  }>Команды</NavLink>
-                        <NavLink to={"/teams2"}
+                        <NavLink to={"/participants"}
                                  className={({ isActive, isPending }) =>
                                      isActive
                                          ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -83,12 +83,6 @@ function App() {
                 </div>
               </div>
             </nav>
-
-            <header className="bg-white shadow">
-              <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
-              </div>
-            </header>
             <main>
               <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <Outlet />

@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {HackathonsPage} from "./components/HackathonsPage";
 
 const router = createBrowserRouter([
     {
@@ -12,7 +13,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <div>Team world!</div>,
+                element: <HackathonsPage/>,
+            },
+            {
+                path: "/teams",
+                element: <div>Список команд</div>,
+            },
+            {
+                path: "/team/:id",
+                element: <div>Профиль команды</div>,
+            },
+            {
+                path: "/participants",
+                element: <div>Участники</div>,
+            },
+            {
+                path: "/participant/:id",
+                element: <div>Профиль участника</div>,
             },
         ]
     },
