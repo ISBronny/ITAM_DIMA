@@ -9,15 +9,17 @@ public class AppDbContext : IdentityDbContext<User>
 	public AppDbContext(DbContextOptions<AppDbContext> options)
 		: base(options)
 	{
-		Database.EnsureCreated();
+		
 	}
 	public DbSet<Team> Teams { get; set; }
-	public DbSet<Team> Hackathons { get; set; }
-	public DbSet<Team> HackathonResults { get; set; }
-	public DbSet<Team> HackathonSolution { get; set; }
+	public DbSet<Hackathon> Hackathons { get; set; }
+	public DbSet<HackathonResults> HackathonResults { get; set; }
+	public DbSet<HackathonSolution> HackathonSolution { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
+		base.OnModelCreating(modelBuilder);
+		
 		//Team
 		modelBuilder.Entity<Team>()
 			.HasKey(x => x.Id);
@@ -25,7 +27,10 @@ public class AppDbContext : IdentityDbContext<User>
 		modelBuilder.Entity<Team>()
 			.HasMany(x => x.Members)
 			.WithMany(x => x.Teams);
-        
+
+		modelBuilder.Entity<Team>()
+			.HasOne(x => x.Leader);
+		
 		//Hackathon
 		modelBuilder.Entity<Hackathon>()
 			.HasKey(x => x.Id);
@@ -36,7 +41,8 @@ public class AppDbContext : IdentityDbContext<User>
 
 		modelBuilder.Entity<Hackathon>()
 			.HasOne(x => x.HackathonResults)
-			.WithOne(x => x.Hackathon);
+			.WithOne(x => x.Hackathon)
+			.HasForeignKey<HackathonResults>(x => x.HackathonId);
 		
 		//HackathonResults
 		modelBuilder.Entity<HackathonResults>()

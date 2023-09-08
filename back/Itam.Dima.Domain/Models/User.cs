@@ -42,12 +42,14 @@ public class Hackathon
 	public List<Team> Teams { get; set; }
 	public DateTime StartDate { get; set; }
 	public DateTime EndDate { get; set; }
+	public string ImageObjectName { get; set; }
 	public HackathonResults? HackathonResults { get; set; }
 }
 
 public class HackathonResults
 {
 	public Guid Id { get; set; }
+	public Guid HackathonId { get; set; }
 	public Hackathon Hackathon { get; set; }
 	public HackathonSolution FirstPlace { get; set; }
 	public HackathonSolution SecondPlace { get; set; }

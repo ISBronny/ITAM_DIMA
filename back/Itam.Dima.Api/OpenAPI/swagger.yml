@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: ITAM - DIMA Api
+  description: |-
+    API для хакатон-сервиса
+  version: 1.0.0
+tags:
+  - name: Team
+    description: Команды
+
+
+paths:
+  /team:
+    get:
+      tags:
+        - Team
+      operationId: getAllTeams
+      responses:
+        '200':
+          description: Список всех команд
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllTeamsResponse'
+    post:
+      tags:
+        - Team
+      operationId: updateTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+      responses:
+        '201':
+          description: Команда успешна обновлена
+        '404':
+          description: Invalid input
+  /team/{id}:
+    get:
+      tags:
+        - Team
+      operationId: getTeam
+      parameters:
+        - name: id
+          in: path
+          description: ID команды
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Список всех команд
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+    delete:
+      tags:
+        - Team
+      operationId: deleteTeam
+      parameters:
+        - name: id
+          in: path
+          description: ID команды
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Команда удалена
+
+
+components:
+  schemas:
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 6B29FC40-CA47-1067-B31D-00DD010662DA
+        name:
+          type: string
+          example: 'Хакни Мисис'
+    GetAllTeamsResponse:
+      type: object
+      properties:
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+        

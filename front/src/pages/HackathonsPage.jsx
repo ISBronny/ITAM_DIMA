@@ -1,44 +1,41 @@
-import {
-    createBrowserRouter, Link, NavLink, Outlet,
-    RouterProvider,
-} from "react-router-dom";
+import axios from "axios";
+import {useEffect, useState} from "react";
+import {NavLink} from "react-router-dom";
+
 
 export const HackathonsPage = () => {
 
-    let hacks = [
-        {
-            name: "ITAM 2023",
-            description: "HASudihj HADSUIhai hduahuisdh usahiodjaoiHu sdhuiaohsdui. AHSDU(jd0iajioj ~!!!! jdisajkpo",
-            imageUrl: "https://gsb.hse.ru/data/2021/09/01/1416777204/1Plaza_Roja,_ITAM.jpg"
-        },
-        {
-            name: "ITAM 2023",
-            description: "HASudihj HADSUIhai hduahuisdh usahiodjaoiHu sdhuiaohsdui. AHSDU(jd0iajioj ~!!!! jdisajkpo",
-            imageUrl: "https://gsb.hse.ru/data/2021/09/01/1416777204/1Plaza_Roja,_ITAM.jpg"
-        },
-        {
-            name: "ITAM 2023",
-            description: "HASudihj HADSUIhai hduahuisdh usahiodjaoiHu sdhuiaohsdui. AHSDU(jd0iajioj ~!!!! jdisajkpo",
-            imageUrl: "https://gsb.hse.ru/data/2021/09/01/1416777204/1Plaza_Roja,_ITAM.jpg"
-        }
-    ] //Получить с бэка
+    const [state, setState] = useState({
+        isLoading: true,
+        hacks: false,
+    });
+
+    useEffect(() => {
+        if (state.isLoading)
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/hackathon/`, {
+                method: 'get',
+            })
+                .then(x => x.json())
+                .then(json => {
+                    setState({...state, isLoading: false, hacks: json})
+                })
+    }, [state]);
+
 
     return (
         <>
-            <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Хакатоны</h2>
-            <div className="">
+            <div className="flex justify-between">
+                <h1 className="font-bold leading-7 text-gray-900 dark:text-white sm:truncate sm:text-3xl sm:tracking-tight ">Хакатоны</h1>
                 <NavLink to={"/hackathon/create"}
-                         className={({ isActive, isPending }) =>
-                             isActive
-                                 ? "bg-purple-700 text-white rounded-md px-3 py-2 text-sm font-medium absolute right-8"
-                                 : "text-gray-300 hover:bg-purple-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                         }>Добавить Хакатон</NavLink>
-                <div>
+                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                >Добавить Хакатон</NavLink>
             </div>
-                {hacks.map(h => <HackathonCard
+
+            <div>
+                {state.isLoading ? "" : state.hacks.map(h => <HackathonCard
                     name={h.name}
                     description={h.description}
-                    imageUrl={h.imageUrl}
+                    imageUrl={`${process.env.REACT_APP_BACKEND_URL}/images/${h.imageObjectName}`}
                 />)}
             </div>
         </>
@@ -46,21 +43,26 @@ export const HackathonsPage = () => {
 }
 
 const HackathonCard = ({name, description, imageUrl}) => {
-    return(
+    return (
         <>
-            <div className="m-5 max-w-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img className="rounded-t-lg" src={imageUrl} alt="" />
-                </a>
+            <div className="mx-auto min-w-full m-5 max-w-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <img className="rounded-t-lg mx-auto w-full object-cover h-96"
+                     src={imageUrl}
+                     alt=""/>
                 <div className="p-5">
                     <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
+                        <h5 className="text-center mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
                     </a>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
-                    <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Какая-то кнопка
+
+                </div>
+                <div className="flex justify-center m-5">
+                    <a href="#"
+                       className=" items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Зарегистрироваться
                     </a>
                 </div>
+
             </div>
         </>
     )

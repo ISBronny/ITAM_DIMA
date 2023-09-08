@@ -1,6 +1,9 @@
+using Itam.Dima.Domain.Models;
 using Itam.Dima.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Minio;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,26 @@ builder.Services.AddSingleton<MinioClient>(x => new MinioClient()
 	.WithEndpoint(builder.Configuration.GetValue<string>("MinIO:Endpoint"))
 	.Build()
 );
+builder.Services.AddDbContext<AppDbContext>(options =>
+	options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres")));
+
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+	{
+		options.SignIn.RequireConfirmedAccount = false;
+		options.SignIn.RequireConfirmedEmail = false;
+		options.SignIn.RequireConfirmedPhoneNumber = false;
+
+	})
+	.AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+	builder.AllowAnyOrigin()
+		.AllowAnyMethod()
+		.AllowAnyHeader();
+}));
+
+builder.Services.AddSerilog(configuration => configuration.WriteTo.Console());
 
 var app = builder.Build();
 
@@ -33,13 +56,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();   
 app.UseAuthorization();
+
+app.UseCors("MyPolicy");
 
 app.MapControllers();
 
 using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
 {
 	var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+	await context.Database.EnsureCreatedAsync();
 	await context.Database.MigrateAsync();
 }
 

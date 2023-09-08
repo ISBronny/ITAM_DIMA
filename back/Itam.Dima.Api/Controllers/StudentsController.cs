@@ -19,6 +19,7 @@ public class StudentsController : Controller
 		
 	}
 
+	[HttpGet]
 	public ActionResult<IEnumerable<ParticipantViewModel>> GetAllParticipants()
 	{
 		var users = _context.Users.Where(x => x.Type == UserType.Participant).ToList();
