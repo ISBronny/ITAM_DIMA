@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {HackathonsPage} from "./components/HackathonsPage";
-import {CreateHackathonPage} from "./components/CreateHackathonPage";
+import {HackathonsPage} from "./pages/HackathonsPage";
+import {CreateHackathonPage} from "./pages/CreateHackathonPage";
 
 const router = createBrowserRouter([
     {
