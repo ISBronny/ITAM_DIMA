@@ -5,15 +5,22 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <NSwagControllerPropertyPageEnabled>true</NSwagControllerPropertyPageEnabled>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
         <PackageReference Include="MediatR" Version="12.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5"/>
+        <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="13.20.0" />
         <PackageReference Include="NSwag.Generation" Version="13.20.0" />
         <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Itam.Dima.Domain\Itam.Dima.Domain.csproj" />
+      <ProjectReference Include="..\Itam.Dima.Infrastructure\Itam.Dima.Infrastructure.csproj" />
     </ItemGroup>
 
 

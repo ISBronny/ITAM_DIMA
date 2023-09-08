@@ -1,25 +1,38 @@
 using AutoMapper;
-using MediatR;
+using Itam.Dima.Domain.Models;
+using Itam.Dima.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Itam.Dima.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class StudentsController : ControllerBase
+public class StudentsController : Controller
 {
-	private readonly IMediator _mediator;
+	private readonly AppDbContext _context;
 	private readonly IMapper _mapper;
 
-	public StudentsController(IMediator mediator, IMapper mapper)
+	public StudentsController(AppDbContext context, IMapper mapper)
 	{
-		_mediator = mediator;
+		_context = context;
 		_mapper = mapper;
 		
 	}
+
+	public ActionResult<IEnumerable<ParticipantViewModel>> GetAllParticipants()
+	{
+		var users = _context.Users.Where(x => x.Type == UserType.Participant).ToList();
+		var response = _mapper.Map<IEnumerable<ParticipantViewModel>>(users);
+
+		return Ok(response);
+
+	}
 }
 
-public class Sutudent
+public class ParticipantViewModel
 {
-	public string Name { get; set; }
+	public string Telegram { get; set; }
+	public string Email { get; set; }
+	public string PhoneNumber { get; set; }
+	public string FullName { get; set; }
 }

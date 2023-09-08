@@ -7,8 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.10" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
+      <PackageReference Include="Minio" Version="5.0.0" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Itam.Dima.Domain\Itam.Dima.Domain.csproj" />
+    </ItemGroup>
+
 
 </Project>
