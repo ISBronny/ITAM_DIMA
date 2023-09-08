@@ -15,5 +15,11 @@ public class StudentsController : ControllerBase
 	{
 		_mediator = mediator;
 		_mapper = mapper;
+		
 	}
+}
+
+public class Sutudent
+{
+	public string Name { get; set; }
 }
