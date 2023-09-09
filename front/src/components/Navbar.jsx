@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import {isAuthorized} from "./auth/RouteGuard";
 import {useEffect, useState} from "react";
+import "../styles/main.css"
 
 export const Navbar = () => {
 
@@ -19,6 +20,10 @@ export const Navbar = () => {
     }, [navigate, redirectState]);
 
     return(
+        <>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@1,300&family=Montserrat+Alternates:ital@1&family=Mulish:wght@300&display=swap');
+        </style>
         <nav className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
@@ -41,7 +46,7 @@ export const Navbar = () => {
                             <img className="h-8 w-auto" src="../assets/images/itam32.jpg" alt="Your Company"/>
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
-                            <div className="flex space-x-4">
+                            <div className="montessrat flex space-x-4">
                                 <NavLink to={"/"}
                                          className={({ isActive, isPending }) =>
                                              isActive
@@ -109,5 +114,6 @@ export const Navbar = () => {
                 </div>
             </div>
         </nav>
+        </>
     );
 }
