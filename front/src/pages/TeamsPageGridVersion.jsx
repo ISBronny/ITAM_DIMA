@@ -7,16 +7,16 @@ export default function TeamsPageGridVersion() {
     const [show5, setShow5] = useState(false);
     return (
         <>
-            <div className="flex items-center justify-center h-screen]">
-                <div className="max-w-3xl rounded shadow overflow-hidden w-full">
+            <div className="flex items-center justify-center h-screen">
+                <div className="max-w-[100%] rounded shadow overflow-hidden w-full">
                     <table className="w-full">
                         <thead className="dark:bg-gray-900 bg-gray-100">
                         <tr>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 uppercase sm:py-8 py-4 sm:pl-6 pl-4">
+                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 uppercase sm:py-2.5 py-2 sm:pl-2.5 pl-2">
                                 <div className="flex items-center">
-                                    Company
+                                    Название команды
                                     <div className="pl-24 relative cursor-pointer">
-                                        <svg onClick={() => setShow1(!show1)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={14} height={25} viewBox="0 0 14 25" fill="none">
+                                        <svg onClick={() => setShow1(!show1)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={1/4} height={25} viewBox="0 0 14 25" fill="none">
                                             <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
                                             <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
                                         </svg>
@@ -30,11 +30,11 @@ export default function TeamsPageGridVersion() {
                                     </div>
                                 </div>
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-6 uppercase">
+                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-2.5 uppercase">
                                 <div className="flex items-center">
-                                    Category
+                                    Дата создания
                                     <div className="pl-16 relative cursor-pointer">
-                                        <svg onClick={() => setShow2(!show2)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={14} height={25} viewBox="0 0 14 25" fill="none">
+                                        <svg onClick={() => setShow2(!show2)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={1/4} height={25} viewBox="0 0 14 25" fill="none">
                                             <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
                                             <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
                                         </svg>
@@ -48,11 +48,11 @@ export default function TeamsPageGridVersion() {
                                     </div>
                                 </div>
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-6 uppercase">
+                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-2.5 uppercase">
                                 <div className="flex items-center">
-                                    View
+                                    Кол-во участий
                                     <div className="pl-10 relative cursor-pointer">
-                                        <svg onClick={() => setShow3(!show3)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={14} height={25} viewBox="0 0 14 25" fill="none">
+                                        <svg onClick={() => setShow3(!show3)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={1/4} height={25} viewBox="0 0 14 25" fill="none">
                                             <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
                                             <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
                                         </svg>
@@ -66,33 +66,15 @@ export default function TeamsPageGridVersion() {
                                     </div>
                                 </div>
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-6 uppercase">
+                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-2.5 uppercase">
                                 <div className="flex items-center">
-                                    Revenue
+                                    Кол-во побед
                                     <div className="pl-6 relative cursor-pointer">
-                                        <svg onClick={() => setShow4(!show4)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={14} height={25} viewBox="0 0 14 25" fill="none">
+                                        <svg onClick={() => setShow4(!show4)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={1/4} height={25} viewBox="0 0 14 25" fill="none">
                                             <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
                                             <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
                                         </svg>
                                         {show4 && (
-                                            <ul className=" mt-1 absolute -ml-12 bg-white rounded shadow ">
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">edit</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">add</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">Select</li>
-                                            </ul>
-                                        )}
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-6 uppercase sm:pr-6 pr-4">
-                                <div className="flex items-center">
-                                    Sales
-                                    <div className="pl-6 relative cursor-pointer">
-                                        <svg onClick={() => setShow5(!show5)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={14} height={25} viewBox="0 0 14 25" fill="none">
-                                            <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
-                                            <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
-                                        </svg>
-                                        {show5 && (
                                             <ul className=" mt-1 absolute -ml-12 bg-white rounded shadow ">
                                                 <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">edit</li>
                                                 <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">add</li>
@@ -150,17 +132,6 @@ export default function TeamsPageGridVersion() {
                             <td className="py-4 sm:pl-6 pl-4">
                                 <p className="text-sm leading-none text-gray-800 dark:text-gray-100">$891.2</p>
                             </td>
-                            <td className="py-4 sm:px-6 px-4">
-                                <div className="flex items-center">
-                                    <p className="text-sm font-semibold pr-3 leading-none text-gray-800 dark:text-gray-100">68%</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none">
-                                        <path
-                                            d="M16 12.0002C16 12.0668 16 12.2002 15.9333 12.2668C15.8667 12.4002 15.7333 12.5335 15.6 12.6002C15.5333 12.6668 15.4 12.6668 15.3333 12.6668H11.3333C10.9333 12.6668 10.6667 12.4002 10.6667 12.0002C10.6667 11.6002 10.9333 11.3335 11.3333 11.3335H13.7333L9 6.60016L6.13333 9.46683C5.86667 9.7335 5.46667 9.7335 5.2 9.46683L0.2 4.46683C-0.0666667 4.20016 -0.0666667 3.80016 0.2 3.5335C0.466667 3.26683 0.866667 3.26683 1.13333 3.5335L5.66667 8.06683L8.53333 5.20016C8.8 4.9335 9.2 4.9335 9.46667 5.20016L14.6667 10.4002V8.00016C14.6667 7.60016 14.9333 7.3335 15.3333 7.3335C15.7333 7.3335 16 7.60016 16 8.00016V12.0002Z"
-                                            fill="#EA5455"
-                                        />
-                                    </svg>
-                                </div>
-                            </td>
                         </tr>
                         <tr className="border-b border-gray-200 dark:border-gray-900">
                             <td className="py-4 sm:pl-6 pl-4">
@@ -217,17 +188,6 @@ export default function TeamsPageGridVersion() {
                             <td className="py-4 sm:pl-6 pl-4">
                                 <p className="text-sm leading-none text-gray-800 dark:text-gray-100">$668</p>
                             </td>
-                            <td className="py-4 sm:px-6 px-4">
-                                <div className="flex items-center">
-                                    <p className="text-sm font-semibold pr-3 leading-none text-gray-800 dark:text-gray-100">97%</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none">
-                                        <path
-                                            d="M16 3.99984C16 3.93317 16 3.79984 15.9333 3.73317C15.8667 3.59984 15.7333 3.4665 15.6 3.39984C15.5333 3.33317 15.4 3.33317 15.3333 3.33317H11.3333C10.9333 3.33317 10.6667 3.59984 10.6667 3.99984C10.6667 4.39984 10.9333 4.6665 11.3333 4.6665H13.7333L9 9.39984L6.13333 6.53317C5.86667 6.2665 5.46667 6.2665 5.2 6.53317L0.2 11.5332C-0.0666667 11.7998 -0.0666667 12.1998 0.2 12.4665C0.466667 12.7332 0.866667 12.7332 1.13333 12.4665L5.66667 7.93317L8.53333 10.7998C8.8 11.0665 9.2 11.0665 9.46667 10.7998L14.6667 5.59984V7.99984C14.6667 8.39984 14.9333 8.6665 15.3333 8.6665C15.7333 8.6665 16 8.39984 16 7.99984V3.99984Z"
-                                            fill="#15803D"
-                                        />
-                                    </svg>
-                                </div>
-                            </td>
                         </tr>
                         <tr className="border-b border-gray-200 dark:border-gray-900">
                             <td className="py-4 sm:pl-6 pl-4">
@@ -282,17 +242,6 @@ export default function TeamsPageGridVersion() {
                             <td className="py-4 sm:pl-6 pl-4">
                                 <p className="text-sm leading-none text-gray-800 dark:text-gray-100">$522.2</p>
                             </td>
-                            <td className="py-4 sm:px-6 px-4">
-                                <div className="flex items-center">
-                                    <p className="text-sm font-semibold pr-3 leading-none text-gray-800 dark:text-gray-100">98%</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none">
-                                        <path
-                                            d="M16 12.0002C16 12.0668 16 12.2002 15.9333 12.2668C15.8667 12.4002 15.7333 12.5335 15.6 12.6002C15.5333 12.6668 15.4 12.6668 15.3333 12.6668H11.3333C10.9333 12.6668 10.6667 12.4002 10.6667 12.0002C10.6667 11.6002 10.9333 11.3335 11.3333 11.3335H13.7333L9 6.60016L6.13333 9.46683C5.86667 9.7335 5.46667 9.7335 5.2 9.46683L0.2 4.46683C-0.0666667 4.20016 -0.0666667 3.80016 0.2 3.5335C0.466667 3.26683 0.866667 3.26683 1.13333 3.5335L5.66667 8.06683L8.53333 5.20016C8.8 4.9335 9.2 4.9335 9.46667 5.20016L14.6667 10.4002V8.00016C14.6667 7.60016 14.9333 7.3335 15.3333 7.3335C15.7333 7.3335 16 7.60016 16 8.00016V12.0002Z"
-                                            fill="#EA5455"
-                                        />
-                                    </svg>
-                                </div>
-                            </td>
                         </tr>
                         <tr className="border-b border-gray-200 dark:border-gray-900">
                             <td className="py-4 sm:pl-6 pl-4">
@@ -341,17 +290,6 @@ export default function TeamsPageGridVersion() {
                             <td className="py-4 sm:pl-6 pl-4">
                                 <p className="text-sm leading-none text-gray-800 dark:text-gray-100">$81.2</p>
                             </td>
-                            <td className="py-4 sm:px-6 px-4">
-                                <div className="flex items-center">
-                                    <p className="text-sm font-semibold pr-3 leading-none text-gray-800 dark:text-gray-100">68%</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none">
-                                        <path
-                                            d="M16 12.0002C16 12.0668 16 12.2002 15.9333 12.2668C15.8667 12.4002 15.7333 12.5335 15.6 12.6002C15.5333 12.6668 15.4 12.6668 15.3333 12.6668H11.3333C10.9333 12.6668 10.6667 12.4002 10.6667 12.0002C10.6667 11.6002 10.9333 11.3335 11.3333 11.3335H13.7333L9 6.60016L6.13333 9.46683C5.86667 9.7335 5.46667 9.7335 5.2 9.46683L0.2 4.46683C-0.0666667 4.20016 -0.0666667 3.80016 0.2 3.5335C0.466667 3.26683 0.866667 3.26683 1.13333 3.5335L5.66667 8.06683L8.53333 5.20016C8.8 4.9335 9.2 4.9335 9.46667 5.20016L14.6667 10.4002V8.00016C14.6667 7.60016 14.9333 7.3335 15.3333 7.3335C15.7333 7.3335 16 7.60016 16 8.00016V12.0002Z"
-                                            fill="#EA5455"
-                                        />
-                                    </svg>
-                                </div>
-                            </td>
                         </tr>
                         <tr className="border-b border-gray-200 dark:border-gray-900">
                             <td className="py-4 sm:pl-6 pl-4">
@@ -396,17 +334,6 @@ export default function TeamsPageGridVersion() {
                             </td>
                             <td className="py-4 sm:pl-6 pl-4">
                                 <p className="text-sm leading-none text-gray-800 dark:text-gray-100">$668</p>
-                            </td>
-                            <td className="py-4 sm:px-6 px-4">
-                                <div className="flex items-center">
-                                    <p className="text-sm font-semibold pr-3 leading-none text-gray-800 dark:text-gray-100">24%</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none">
-                                        <path
-                                            d="M16 12.0002C16 12.0668 16 12.2002 15.9333 12.2668C15.8667 12.4002 15.7333 12.5335 15.6 12.6002C15.5333 12.6668 15.4 12.6668 15.3333 12.6668H11.3333C10.9333 12.6668 10.6667 12.4002 10.6667 12.0002C10.6667 11.6002 10.9333 11.3335 11.3333 11.3335H13.7333L9 6.60016L6.13333 9.46683C5.86667 9.7335 5.46667 9.7335 5.2 9.46683L0.2 4.46683C-0.0666667 4.20016 -0.0666667 3.80016 0.2 3.5335C0.466667 3.26683 0.866667 3.26683 1.13333 3.5335L5.66667 8.06683L8.53333 5.20016C8.8 4.9335 9.2 4.9335 9.46667 5.20016L14.6667 10.4002V8.00016C14.6667 7.60016 14.9333 7.3335 15.3333 7.3335C15.7333 7.3335 16 7.60016 16 8.00016V12.0002Z"
-                                            fill="#EA5455"
-                                        />
-                                    </svg>
-                                </div>
                             </td>
                         </tr>
                         <tr className="border-b border-gray-200 dark:border-gray-900">
@@ -472,17 +399,6 @@ export default function TeamsPageGridVersion() {
                             </td>
                             <td className="py-4 sm:pl-6 pl-4">
                                 <p className="text-sm leading-none text-gray-800 dark:text-gray-100">$891.2</p>
-                            </td>
-                            <td className="py-4 sm:px-6 px-4">
-                                <div className="flex items-center">
-                                    <p className="text-sm font-semibold pr-3 leading-none text-gray-800 dark:text-gray-100">68%</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none">
-                                        <path
-                                            d="M16 3.99984C16 3.93317 16 3.79984 15.9333 3.73317C15.8667 3.59984 15.7333 3.4665 15.6 3.39984C15.5333 3.33317 15.4 3.33317 15.3333 3.33317H11.3333C10.9333 3.33317 10.6667 3.59984 10.6667 3.99984C10.6667 4.39984 10.9333 4.6665 11.3333 4.6665H13.7333L9 9.39984L6.13333 6.53317C5.86667 6.2665 5.46667 6.2665 5.2 6.53317L0.2 11.5332C-0.0666667 11.7998 -0.0666667 12.1998 0.2 12.4665C0.466667 12.7332 0.866667 12.7332 1.13333 12.4665L5.66667 7.93317L8.53333 10.7998C8.8 11.0665 9.2 11.0665 9.46667 10.7998L14.6667 5.59984V7.99984C14.6667 8.39984 14.9333 8.6665 15.3333 8.6665C15.7333 8.6665 16 8.39984 16 7.99984V3.99984Z"
-                                            fill="#15803D"
-                                        />
-                                    </svg>
-                                </div>
                             </td>
                         </tr>
                         </tbody>
