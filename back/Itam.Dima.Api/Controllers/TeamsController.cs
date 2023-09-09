@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 namespace Itam.Dima.Api.Controllers;
 
 [ApiController]
-[Route("hackathon")]
-public class HackathonController : Controller
+[Route("teams")]
+public class TeamsController : Controller
 {
 	private readonly AppDbContext _context;
 
-	public HackathonController(AppDbContext context)
+	public TeamsController(AppDbContext context)
 	{
 		_context = context;
 	}
@@ -27,22 +27,25 @@ public class HackathonController : Controller
 	}
 	
 	[HttpPost]
-	public async Task<IActionResult> Create(CreateHackRequest request)
+	public async Task<IActionResult> Create(CreateTeamRequest request)
 	{
 		if (!ModelState.IsValid) return BadRequest(ModelState);
-			
-		var hack = _context.Hackathons.Add(new Hackathon
+
+		var leader = await _context.Users.FirstAsync(x => x.UserName == request.LeaderUserName);
+
+		var members = await _context.Users.Where(x => request.MemberUserNames.Contains(x.UserName)).ToListAsync();
+        
+		var team = _context.Teams.Add(new Team()
 		{
 			Id = Guid.NewGuid(),
 			Name = request.Name,
-			Description = request.Description,
-			StartDate = request.StartDate,
-			EndDate = request.EndDate,
-			ImageObjectName = request.ObjectName
+			Leader = leader,
+			Members = members,
+			
 		});
 
 		await _context.SaveChangesAsync();
 
-		return Ok(hack.Entity.Id);
+		return Ok(team);
 	}
 }

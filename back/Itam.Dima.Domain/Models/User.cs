@@ -24,6 +24,7 @@ public class Team
 	public User Leader { get; set; }
 	public List<User> Members { get; set; }
 	public List<Hackathon> Hackathons { get; set; }
+	public DateTime CreatedAt { get; set; }
 
 }
 
