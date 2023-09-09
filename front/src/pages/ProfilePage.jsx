@@ -58,9 +58,17 @@ export const ProfilePage = () => {
                         </div>
 
                     </div>
-                    <div className="col-span-6 h-96">
+                    <div className="col-span-6 lg:col-span-4 h-96">
                         <div className="w-full max-h-full h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-900">
                             <TeamsTable search={false} user={id !== undefined ? id : getCurrentUseLogin()}/>
+                        </div>
+                    </div>
+                    <div className="col-span-6 lg:col-span-2 h-96">
+                        <div className="w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <div className="flex flex-col items-center pb-10">
+                                <h5 className="m-2 mt-4 text-2xl font-medium text-gray-900 dark:text-white">Статистика</h5>
+
+                            </div>
                         </div>
                     </div>
                     {id === undefined || id === getCurrentUseLogin() ?
