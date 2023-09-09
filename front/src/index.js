@@ -9,7 +9,6 @@ import {CreateHackathonPage} from "./pages/CreateHackathonPage";
 import {AuthorizationPage} from "./pages/AuthorizationPage";
 import {ProfilePage} from "./pages/ProfilePage";
 import {TeamsPage} from "./pages/TeamsPage"
-import TeamsPageGridVersion from "./pages/TeamsPageGridVersion"
 import {ParticipantsPage} from "./pages/ParticipantsPage";
 import {RegistrationPage} from "./pages/RegistrationPage";
 
@@ -28,7 +27,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/teams",
-                element: <TeamsPageGridVersion/>,
+                element: <TeamsPage/>,
             },
             {
                 path: "/team/:id",

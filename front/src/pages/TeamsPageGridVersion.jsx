@@ -1,92 +1,35 @@
 import React, { useState } from "react";
 export default function TeamsPageGridVersion() {
-    const [show1, setShow1] = useState(false);
-    const [show2, setShow2] = useState(false);
-    const [show3, setShow3] = useState(false);
-    const [show4, setShow4] = useState(false);
-    const [show5, setShow5] = useState(false);
     return (
         <>
-            <div className="flex items-center justify-center h-screen">
-                <div className="max-w-[100%] rounded shadow overflow-hidden w-full">
-                    <table className="w-full">
+            <div className="flex items-top justify-center h-screen pt-10">
+                <div className="max-w-[100%] rounded overflow-hidden w-full">
+                    <table className="w-full shadow">
                         <thead className="dark:bg-gray-900 bg-gray-100">
                         <tr>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 uppercase sm:py-2.5 py-2 sm:pl-2.5 pl-2">
+                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 uppercase sm:py-4 py-3 sm:pl-4 pl-3">
                                 <div className="flex items-center">
                                     Название команды
-                                    <div className="pl-24 relative cursor-pointer">
-                                        <svg onClick={() => setShow1(!show1)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={1/4} height={25} viewBox="0 0 14 25" fill="none">
-                                            <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
-                                            <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
-                                        </svg>
-                                        {show1 && (
-                                            <ul className=" mt-1 absolute -ml-12 bg-white rounded shadow ">
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">edit</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">add</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">Select</li>
-                                            </ul>
-                                        )}
-                                    </div>
                                 </div>
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-2.5 uppercase">
+                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-4 uppercase">
                                 <div className="flex items-center">
                                     Дата создания
-                                    <div className="pl-16 relative cursor-pointer">
-                                        <svg onClick={() => setShow2(!show2)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={1/4} height={25} viewBox="0 0 14 25" fill="none">
-                                            <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
-                                            <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
-                                        </svg>
-                                        {show2 && (
-                                            <ul className=" mt-1 absolute -ml-12 bg-white rounded shadow ">
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">edit</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">add</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">Select</li>
-                                            </ul>
-                                        )}
-                                    </div>
                                 </div>
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-2.5 uppercase">
+                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-4 uppercase">
                                 <div className="flex items-center">
                                     Кол-во участий
-                                    <div className="pl-10 relative cursor-pointer">
-                                        <svg onClick={() => setShow3(!show3)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={1/4} height={25} viewBox="0 0 14 25" fill="none">
-                                            <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
-                                            <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
-                                        </svg>
-                                        {show3 && (
-                                            <ul className=" mt-1 absolute -ml-12 bg-white rounded shadow ">
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">edit</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">add</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">Select</li>
-                                            </ul>
-                                        )}
-                                    </div>
                                 </div>
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-2.5 uppercase">
+                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-4 uppercase">
                                 <div className="flex items-center">
                                     Кол-во побед
-                                    <div className="pl-6 relative cursor-pointer">
-                                        <svg onClick={() => setShow4(!show4)} className="text-gray-300" xmlns="http://www.w3.org/2000/svg" width={1/4} height={25} viewBox="0 0 14 25" fill="none">
-                                            <path d="M10.9083 9.15817C10.7916 9.27484 10.675 9.33317 10.5 9.33317C10.325 9.33317 10.2083 9.27484 10.0916 9.15817L6.99996 6.0665L3.90829 9.15817C3.67496 9.3915 3.32496 9.3915 3.09163 9.15817C2.85829 8.92484 2.85829 8.57484 3.09163 8.3415L6.59163 4.8415C6.82496 4.60817 7.17496 4.60817 7.40829 4.8415L10.9083 8.3415C11.1416 8.57484 11.1416 8.92484 10.9083 9.15817Z" fill="currentColor" />
-                                            <path d="M10.9083 16.6582L7.40829 20.1582C7.29163 20.2748 7.17496 20.3332 6.99996 20.3332C6.82496 20.3332 6.70829 20.2748 6.59163 20.1582L3.09163 16.6582C2.85829 16.4248 2.85829 16.0748 3.09163 15.8415C3.32496 15.6082 3.67496 15.6082 3.90829 15.8415L6.99996 18.9332L10.0916 15.8415C10.325 15.6082 10.675 15.6082 10.9083 15.8415C11.1416 16.0748 11.1416 16.4248 10.9083 16.6582Z" fill="currentColor" />
-                                        </svg>
-                                        {show4 && (
-                                            <ul className=" mt-1 absolute -ml-12 bg-white rounded shadow ">
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">edit</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">add</li>
-                                                <li className="text-xs text-gray-800 dark:text-gray-100 hover:text-white hover:bg-indigo-700 py-2 px-4">Select</li>
-                                            </ul>
-                                        )}
-                                    </div>
                                 </div>
                             </td>
                         </tr>
                         </thead>
-                        <tbody className="bg-white dark:bg-gray-800">
+                        <tbody className="bg-gray-50 dark:bg-gray-800">
                         <tr className="border-b border-gray-200 dark:border-gray-900">
                             <td className="py-4 sm:pl-6 pl-4">
                                 <div className="flex items-center">
