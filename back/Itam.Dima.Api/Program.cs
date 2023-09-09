@@ -34,7 +34,10 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 		options.SignIn.RequireConfirmedAccount = false;
 		options.SignIn.RequireConfirmedEmail = false;
 		options.SignIn.RequireConfirmedPhoneNumber = false;
-
+		options.Password.RequireDigit = false;
+		options.Password.RequireNonAlphanumeric = false;
+		options.Password.RequireLowercase = false;
+		options.Password.RequiredLength = 4;
 	})
 	.AddEntityFrameworkStores<AppDbContext>();
 
@@ -104,7 +107,7 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 			UserName = "Admin",
 			FullName = "Админ Админович",
 			Telegram = "Admin",
-			Type = UserType.Admin
+			Type = UserType.Admin,
 		}, "ITAM_ADMIN228");
 		
 		
@@ -125,7 +128,7 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 		}).ToList();
 		foreach (var user in users)
 		{
-			await userManager.CreateAsync(user);
+			await userManager.CreateAsync(user, "MrBen228_");
 			await context.Teams.AddRangeAsync(Enumerable.Range(0, users.Count / 5).Select(i =>
 			{
 				var members = users.Skip(i * 5).Take(5).ToArray();

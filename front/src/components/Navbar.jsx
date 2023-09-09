@@ -1,10 +1,22 @@
 import {
     createBrowserRouter, Link, NavLink, Outlet,
-    RouterProvider,
+    RouterProvider, useNavigate,
 } from "react-router-dom";
 import {isAuthorized} from "./auth/RouteGuard";
+import {useEffect, useState} from "react";
 
 export const Navbar = () => {
+
+    let [redirectState, setRedirectState] = useState(false);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (redirectState) {
+            navigate('/');
+        }
+    });
+
     return(
         <nav className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -69,7 +81,18 @@ export const Navbar = () => {
                         </div>
                     </div>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        {isAuthorized() ? <h1 className="text-xl font-semibold text-gray-900 dark:text-white">Привет!</h1> :
+                        {isAuthorized() ?
+                            <button type="button" className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800
+                             focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm my-2 px-5 py-2 text-center
+                              mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+                                onClick={() => {
+                                    localStorage.removeItem("token");
+                                    setRedirectState(true)
+                                }}
+                            >
+                                Выйти
+                            </button>
+                            :
                         <NavLink to={"/login"}
                                  className={({ isActive, isPending }) =>
                                      isActive
