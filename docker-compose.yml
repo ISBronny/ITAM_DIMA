@@ -3,11 +3,13 @@ version: '3.7'
 services:
 
   api:
-    container_name: 'itam-dima-back'
-    image: 'itam-dima-back'
+    container_name: 'itam-dima-back2'
+    image: 'itam-dima-back2'
     build:
       context: .
       dockerfile: Backend.Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
     ports:
       - "5080:80"
       - "5080:443"
