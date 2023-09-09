@@ -27,6 +27,7 @@ public class TeamsController : Controller
 	}
 	
 	[HttpPost]
+	[AllowAnonymous]
 	public async Task<IActionResult> Create(CreateTeamRequest request)
 	{
 		if (!ModelState.IsValid) return BadRequest(ModelState);
