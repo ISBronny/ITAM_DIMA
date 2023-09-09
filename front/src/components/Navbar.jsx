@@ -21,6 +21,7 @@ export const Navbar = () => {
 
     return(
         <>
+
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@1,300&family=Montserrat+Alternates:wght@700&family=Mulish:wght@300&display=swap');
         </style>
