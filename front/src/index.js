@@ -12,6 +12,7 @@ import {RegistrationPage} from "./pages/RegistrationPage";
 import RouteGuard from "./components/auth/RouteGuard";
 import {CreateHackathonPage} from "./pages/CreateHackathonPage";
 import {TeamDescriptionPage} from "./pages/TeamDescriptionPage"
+import {HackathonDescriptionPage} from "./pages/HackatonDescriptionPage";
 
 const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path:"/registration",
                 element: <RegistrationPage/>
+            },
+            {
+                path:"hackathon/:id",
+                element: <HackathonDescriptionPage/>
             }
         ]
     },
