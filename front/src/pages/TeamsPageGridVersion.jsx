@@ -123,8 +123,8 @@ export default function TeamsPageGridVersion() {
                                         </svg>
                                     </div>
                                     <div className="pl-5">
-                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Dixons</p>
-                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">meguc@ruj.io</p>
+                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">DIMA</p>
+                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">dima@gmail.com</p>
                                     </div>
                                 </div>
                             </td>
@@ -190,8 +190,8 @@ export default function TeamsPageGridVersion() {
                                         </svg>
                                     </div>
                                     <div className="pl-5">
-                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Motels</p>
-                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">meguc@ruj.io</p>
+                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Baka</p>
+                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">baka@gmail.com</p>
                                     </div>
                                 </div>
                             </td>
@@ -207,7 +207,7 @@ export default function TeamsPageGridVersion() {
                                             />
                                         </svg>
                                     </div>
-                                    <p className="text-sm leading-tight text-gray-500 dark:text-gray-400 pl-3">Grocery</p>
+                                    <p className="text-sm leading-tight text-gray-500 dark:text-gray-400 pl-3">Technology</p>
                                 </div>
                             </td>
                             <td className="py-4 sm:pl-6 pl-4">
@@ -255,8 +255,8 @@ export default function TeamsPageGridVersion() {
                                         </svg>
                                     </div>
                                     <div className="pl-5">
-                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Zipcar</p>
-                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">meguc@ruj.io</p>
+                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Белые медведи</p>
+                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">bears@gmail.com</p>
                                     </div>
                                 </div>
                             </td>
@@ -272,7 +272,7 @@ export default function TeamsPageGridVersion() {
                                             />
                                         </svg>
                                     </div>
-                                    <p className="text-sm leading-tight text-gray-500 dark:text-gray-400 pl-3">Fashion</p>
+                                    <p className="text-sm leading-tight text-gray-500 dark:text-gray-400 pl-3">Technology</p>
                                 </div>
                             </td>
                             <td className="py-4 sm:pl-6 pl-4">
@@ -314,8 +314,8 @@ export default function TeamsPageGridVersion() {
                                         </svg>
                                     </div>
                                     <div className="pl-5">
-                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Owing</p>
-                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">meguc@ruj.io</p>
+                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Vampires</p>
+                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">vamp@gmail.com</p>
                                     </div>
                                 </div>
                             </td>
@@ -370,8 +370,8 @@ export default function TeamsPageGridVersion() {
                                         </svg>
                                     </div>
                                     <div className="pl-5">
-                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Cafes</p>
-                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">meguc@ruj.io</p>
+                                        <p className="text-sm font-semibold leading-none text-gray-800 dark:text-gray-100 pb-2">Skaters</p>
+                                        <p className="text-xs leading-3 text-gray-500 dark:text-gray-400">skaters@yandex.ru</p>
                                     </div>
                                 </div>
                             </td>

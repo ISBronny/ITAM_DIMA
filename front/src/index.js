@@ -11,6 +11,7 @@ import {ProfilePage} from "./pages/ProfilePage";
 import {TeamsPage} from "./pages/TeamsPage"
 import TeamsPageGridVersion from "./pages/TeamsPageGridVersion"
 import {ParticipantsPage} from "./pages/ParticipantsPage";
+import {RegistrationPage} from "./pages/RegistrationPage";
 
 const router = createBrowserRouter([
     {
@@ -48,7 +49,11 @@ const router = createBrowserRouter([
             {
                 path:"/profile",
                 element: <ProfilePage/>
-            }
+            },
+            {
+                path:"/registration",
+                element: <RegistrationPage/>
+            },
         ]
     },
 
