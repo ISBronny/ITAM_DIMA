@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 
 
-export const TeamsTable = ({user= null, search= true}) => {
+export const HacksTable = ({user, search= false}) => {
 
     const [state, setState] = useState({
         isLoading: true,
@@ -12,7 +12,7 @@ export const TeamsTable = ({user= null, search= true}) => {
 
     useEffect(() => {
         if (state.isLoading)
-            fetch(`${process.env.REACT_APP_BACKEND_URL}/teams/`+ (user != null ? `user/${user}/` : ""), {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/hackathon/user/${user}`, {
                 method: 'get',
             })
                 .then(x => x.json())
@@ -58,23 +58,19 @@ export const TeamsTable = ({user= null, search= true}) => {
                     <tr>
                         <th scope="col"
                             className="p-4">
-                            Название команды
+                            Название хакаотна
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-                           Дата создания
+                           Даты проведения
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-                            Количество участий
+                           Роль
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-                            Победы
-                        </th>
-                        <th scope="col"
-                            className="px-6 py-3">
-
+                            Победа
                         </th>
                     </tr>
                     </thead>
@@ -86,14 +82,13 @@ export const TeamsTable = ({user= null, search= true}) => {
                                 {h.name}
                             </th>
                             <td className="px-6 py-4">
-                                {new Date(Date.parse(h.createdAt)).toLocaleDateString()}
-
+                                {new Date(Date.parse(h.startDate)).toLocaleDateString()} - {new Date(Date.parse(h.endDate)).toLocaleDateString()}
                             </td>
                             <td className="px-6 py-4">
-                                Laptop
+                                {h.role === "leader" ? "Лидер" : "Учатсник"}
                             </td>
                             <td className="px-6 py-4">
-                                0
+                                Нет
                             </td>
                             <td className="px-6 py-4">
                                 <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/team/${h.id}`}>Профиль</NavLink>

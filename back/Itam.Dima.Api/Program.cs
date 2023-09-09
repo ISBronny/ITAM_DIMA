@@ -138,6 +138,42 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 				CreatedAt = DateTime.UtcNow,
 			}));
 		}
+
+		foreach (var team in context.Teams.ToList().Chunk(6))
+		{
+			if(team.Length < 3)
+				break;
+			var date = DateTime.Now.AddDays(-Random.Shared.Next(1000));
+			await context.Hackathons.AddAsync(new Hackathon()
+			{
+				Id = Guid.NewGuid(),
+				Name = $"ITAM_{Random.Shared.Next(1000)}",
+				Description = "",
+				StartDate = date,
+				EndDate = date.AddDays(Random.Shared.Next(10)),
+				HackathonResults = new HackathonResults()
+				{
+					Id = Guid.NewGuid(),
+					FirstPlace = new HackathonSolution()
+					{
+						Id = Guid.NewGuid(),
+						 Team = team[0]
+					},
+					SecondPlace = new HackathonSolution()
+					{
+						Id = Guid.NewGuid(),
+						Team = team[1]
+					},
+					ThirdPlace = new HackathonSolution()
+					{
+						Id = Guid.NewGuid(),
+						Team = team[2]
+					}
+				}
+			});
+		}
+
+		await context.SaveChangesAsync();
 	}
 	catch (Exception)
 	{

@@ -19,8 +19,14 @@ public class AppDbContext : IdentityDbContext<User>
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		base.OnModelCreating(modelBuilder);
+
+		modelBuilder.Entity<User>()
+			.HasIndex(x => x.Telegram);
 		
 		//Team
+		modelBuilder.Entity<Team>()
+			.HasIndex(x => x.Name);
+		
 		modelBuilder.Entity<Team>()
 			.HasKey(x => x.Id);
 		
