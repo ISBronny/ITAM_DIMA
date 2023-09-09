@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Itam.Dima.Domain.Models;
 using Itam.Dima.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Minio;
@@ -76,6 +77,7 @@ public class HackathonController : Controller
 	}
 
 	[HttpGet]
+	[AllowAnonymous]
 	public async Task<ActionResult> GetAll()
 	{
 		var hacks = await _context.Hackathons.ToListAsync();

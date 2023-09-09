@@ -5,12 +5,11 @@ namespace Itam.Dima.Api.Controllers;
 public class LoginViewModel
 {
 	[Required]
-	[Display(Name = "Email")]
-	public string Email { get; set; }
+	public string Telegram { get; set; }
          
 	[Required]
 	[DataType(DataType.Password)]
 	public string Password { get; set; }
-         
-	public bool RememberMe { get; set; }
+
+	public bool RememberMe { get; set; } = true;
 }

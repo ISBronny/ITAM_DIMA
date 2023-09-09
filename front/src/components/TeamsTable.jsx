@@ -1,7 +1,4 @@
-import axios from "axios";
 import {useEffect, useState} from "react";
-import {NavLink} from "react-router-dom";
-import React from "@types/react";
 
 
 export const TeamsTable = () => {
@@ -20,6 +17,8 @@ export const TeamsTable = () => {
                 .then(json => {
                     setState({...state, isLoading: false, teamsRows: json})
                 })
+                .catch(x=>console.log(x))
+
     }, [state]);
 
 

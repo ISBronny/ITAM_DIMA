@@ -5,9 +5,10 @@ namespace Itam.Dima.Domain.Models;
 public class User : IdentityUser
 {
 	public List<Team> Teams { get; set; }
-	public List<Specialization> Specializations { get; set; }
+	public List<Specialization> Specializations { get; set; } = new List<Specialization>();
 	public string Telegram { get; set; }
 	public UserType Type { get; set; }
+	public string FullName { get; set; }
 }
 
 public enum UserType

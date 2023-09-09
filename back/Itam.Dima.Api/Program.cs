@@ -1,7 +1,10 @@
+using System.Text;
 using Itam.Dima.Domain.Models;
 using Itam.Dima.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Minio;
 using Serilog;
 
@@ -35,6 +38,27 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 	})
 	.AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddAuthentication(options =>
+	{
+		options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+		options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+		options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+	})
+
+// Adding Jwt Bearer
+	.AddJwtBearer(options =>
+	{
+		options.SaveToken = true;
+		options.RequireHttpsMetadata = false;
+		options.TokenValidationParameters = new TokenValidationParameters()
+		{
+			ValidateIssuer = true,
+			ValidateAudience = true,
+			ValidAudience = AuthOptions.AUDIENCE,
+			ValidIssuer = AuthOptions.ISSUER,
+		};
+	});
 
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
@@ -71,3 +95,15 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 }
 
 app.Run();
+
+public class AuthOptions
+{
+	public const string ISSUER = "ITAM_DIMA"; // издатель токена
+	public const string AUDIENCE = "ITAM_FRONT"; // потребитель токена
+	const string KEY = "mysupersecret_secretkey!123";   // ключ для шифрации
+	public const int LIFETIME = 1; // время жизни токена - 1 минута
+	public static SymmetricSecurityKey GetSymmetricSecurityKey()
+	{
+		return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));
+	}
+}

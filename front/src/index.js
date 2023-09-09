@@ -11,6 +11,8 @@ import {ProfilePage} from "./pages/ProfilePage";
 import {TeamsPage} from "./pages/TeamsPage"
 import {ParticipantsPage} from "./pages/ParticipantsPage";
 import {RegistrationPage} from "./pages/RegistrationPage";
+import RouteGuard from "./components/auth/RouteGuard";
+import {RegisterForm} from "./components/auth/RegisterForm";
 
 const router = createBrowserRouter([
     {
@@ -22,8 +24,9 @@ const router = createBrowserRouter([
                 element: <HackathonsPage/>,
             },
             {
-                 path: "/hackathon/create",
-                 element: <CreateHackathonPage/>,
+                path: "/hackathon/create",
+                element:
+                    <RouteGuard forAdmin={true}/>,
             },
             {
                 path: "/teams",
@@ -43,7 +46,7 @@ const router = createBrowserRouter([
             },
             {
                 path:"/login",
-                element: <AuthorizationPage/>
+                element: <RegistrationPage/>
             },
             {
                 path:"/profile",
