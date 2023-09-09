@@ -58,9 +58,8 @@ export const ProfilePage = () => {
                             <TeamsTable search={false} user={id}/>
                         </div>
                     </div>
-                </div>}
-
-
+                </div>
+            }
         </>
     )
 }
