@@ -13,6 +13,7 @@ import {ParticipantsPage} from "./pages/ParticipantsPage";
 import {RegistrationPage} from "./pages/RegistrationPage";
 import RouteGuard from "./components/auth/RouteGuard";
 import {RegisterForm} from "./components/auth/RegisterForm";
+import {TeamDescriptionPage} from "./pages/TeamDescriptionPage"
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/team/:id",
-                element: <div>Профиль команды</div>,
+                element: <TeamDescriptionPage/>,
             },
             {
                 path: "/participants",
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
             {
                 path:"/registration",
                 element: <RegistrationPage/>
-            },
+            }
         ]
     },
 
