@@ -22,7 +22,7 @@ export const Navbar = () => {
     return(
         <>
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@1,300&family=Montserrat+Alternates:ital@1&family=Mulish:wght@300&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@1,300&family=Montserrat+Alternates:wght@700&family=Mulish:wght@300&display=swap');
         </style>
         <nav className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
