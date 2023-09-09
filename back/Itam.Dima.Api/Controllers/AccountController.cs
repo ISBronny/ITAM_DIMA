@@ -31,7 +31,6 @@ public class AccountController : Controller
 			Email = model.Email, 
 			UserName = model.Telegram, 
 			FullName = model.FullName,
-			NormalizedUserName = model.FullName,
 			PhoneNumber = model.PhoneNumber,
 			Telegram = model.Telegram,
 			Type = UserType.Participant
