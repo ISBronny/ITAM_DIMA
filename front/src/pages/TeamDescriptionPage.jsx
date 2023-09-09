@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {NavLink} from "react-router-dom";
 import {TeamsTable} from "../components/TeamsTable";
+import {ParticipantsTable} from "../components/ParticipantsTable";
 
 
 export const TeamDescriptionPage =()=> {
@@ -56,7 +57,7 @@ export const TeamDescriptionPage =()=> {
                     </div>
                     <div className="col-span-4">
                         <div className="w-full h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  overflow-auto">
-                            <TeamsTable search={false} group={id}/>
+                            <ParticipantsTable search={false} teamId={id}/>
                         </div>
                     </div>
                 </div>

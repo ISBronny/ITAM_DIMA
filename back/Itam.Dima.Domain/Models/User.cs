@@ -4,7 +4,7 @@ namespace Itam.Dima.Domain.Models;
 
 public class User : IdentityUser
 {
-	public List<Team> Teams { get; set; }
+	public List<Team> Teams { get; set; } = new List<Team>();
 	public List<Specialization> Specializations { get; set; } = new List<Specialization>();
 	public string Telegram { get; set; }
 	public UserType Type { get; set; }
@@ -23,7 +23,7 @@ public class Team
 	public string Name { get; set; }
 	public User Leader { get; set; }
 	public List<User> Members { get; set; }
-	public List<Hackathon> Hackathons { get; set; }
+	public List<Hackathon> Hackathons { get; set; } = new List<Hackathon>();
 	public DateTime CreatedAt { get; set; }
 
 }

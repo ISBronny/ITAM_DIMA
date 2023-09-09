@@ -21,11 +21,13 @@ public class AppDbContext : IdentityDbContext<User>
 		base.OnModelCreating(modelBuilder);
 
 		modelBuilder.Entity<User>()
-			.HasIndex(x => x.Telegram);
+			.HasIndex(x => x.Telegram)
+			.IsUnique();
 		
 		//Team
 		modelBuilder.Entity<Team>()
-			.HasIndex(x => x.Name);
+			.HasIndex(x => x.Name)
+			.IsUnique();
 		
 		modelBuilder.Entity<Team>()
 			.HasKey(x => x.Id);

@@ -50,7 +50,8 @@ const router = createBrowserRouter([
             },
             {
                 path:"/profile",
-                element: <ProfilePage/>
+                element: <RouteGuard forAdmin={false} component={ProfilePage}/>,
+
             },
             {
                 path:"/registration",

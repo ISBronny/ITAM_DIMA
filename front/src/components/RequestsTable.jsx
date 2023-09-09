@@ -2,26 +2,51 @@ import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 
 
-export const ParticipantsTable = ({search= true, teamId = undefined}) => {
+export const RequestsTable = ({user= undefined, search= false}) => {
 
     const [state, setState] = useState({
         isLoading: true,
-        participants: [],
+        requests: false,
         filter: '',
     });
 
     useEffect(() => {
         if (state.isLoading)
-            fetch(teamId === undefined ? `${process.env.REACT_APP_BACKEND_URL}/participants` : `${process.env.REACT_APP_BACKEND_URL}/participant/team/${teamId}`, {
+            /*fetch(`${process.env.REACT_APP_BACKEND_URL}/hackathon/user/${user}`, {
                 method: 'get',
             })
-                .catch(x=>console.log(x))
                 .then(x => x.json())
                 .then(json => {
-                    setState({...state, isLoading: false, participants: json})
+                    setState({...state, isLoading: false, hacks: json})
                 })
-                .catch(x => console.log(x))
-    }, [state]);
+                .catch(x => console.log(x))*/
+            setState({
+                ...state,
+                isLoading: false,
+                requests: [
+                    {
+                        name: "Выдача VDS",
+                        createdAt: new Date().toISOString(),
+                        status: "pending",
+                        responsible: "@HackBot"
+                    },
+                    {
+                        name: "Доступ к облачным вычислениям",
+                        createdAt: new Date().toISOString(),
+                        status: "pending",
+                        responsible: "@HackBot"
+                    },
+                    {
+                        name: "Не работет бот",
+                        createdAt: new Date().toISOString(),
+                        status: "done",
+                        responsible: "@HackBot"
+                    }
+                ]
+
+            })
+
+    }, [state, user]);
 
 
     return (
@@ -58,44 +83,43 @@ export const ParticipantsTable = ({search= true, teamId = undefined}) => {
                     <tr>
                         <th scope="col"
                             className="p-4">
-                            ФИО
+                            Название
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-                            Телеграм
+                           Дата создания
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-                            Участия
+                           Статус
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-                            Победы
+                            Ответственный
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    {state.isLoading ? <tr></tr> : state.participants.filter(h=>h.name.startsWith(state.filter)).map(h =>
+                    {state.isLoading ? <tr></tr> : state.requests.map(r =>
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {h.name}
+                                {r.name}
                             </th>
                             <td className="px-6 py-4">
-                                {h.telegram}
+                                {new Date(Date.parse(r.createdAt)).toLocaleDateString()}
                             </td>
                             <td className="px-6 py-4">
-                                {h.participations}
+                                {r.status === "pending" ? "Ждет обработки" : "Готово"}
                             </td>
                             <td className="px-6 py-4">
-                                0
+                                {r.responsible}
                             </td>
                             <td className="px-6 py-4">
-                                <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/participant/${h.telegram}`}>Профиль</NavLink>
+                                <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/requests/${r.id}`}>Запрос</NavLink>
                             </td>
                         </tr>
                     )}

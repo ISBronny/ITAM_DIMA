@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Bogus;
 using Itam.Dima.Domain.Models;
 using Itam.Dima.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -135,15 +136,25 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 		foreach (var user in users)
 		{
 			var result = await userManager.CreateAsync(user, "MrBen228_");
-			await context.Teams.AddRangeAsync(context.Users.Where(x=>x.Type == UserType.Participant).ToList().Chunk(5).Select((members, i) => new Team()
+		}
+		
+		context.Teams.AddRange(context.Users.Where(x=>x.Type == UserType.Participant).ToList().Chunk(5).Select((members, i) =>
+		{
+			var team = new Team()
 			{
 				Id = Guid.NewGuid(),
 				Leader = members.First(),
 				Members = members.Skip(1).ToList(),
-				Name = $"TestTeam{i}",
+				Name = Faker.Company.Name(),
 				CreatedAt = DateTime.UtcNow,
-			}));
-		}
+			};
+				
+			members.First().Teams.Add(team);
+
+			return team;
+		}));
+
+		await context.SaveChangesAsync();
 
 		foreach (var team in context.Teams.ToList().OrderBy(_ => Guid.NewGuid()).Chunk(6))
 		{
@@ -154,8 +165,8 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 			context.Hackathons.Add(new Hackathon()
 			{
 				Id = id,
-				Name = $"ITAM_{Random.Shared.Next(1000)}",
-				Description = "",
+				Name = $"ITAM - {Faker.Country.Name()}",
+				Description = Faker.Lorem.Paragraph(),
 				StartDate = date,
 				EndDate = date.AddDays(Random.Shared.Next(10)),
 				HackathonResults = new HackathonResults()
@@ -165,7 +176,7 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 					{
 						Id = Guid.NewGuid(),
 						 Team = team[0],
-						 Description = "",
+						 Description = Faker.Lorem.Paragraph(),
 						 Link = "https://github.com/ISBronny/FlueFlame",
 						 DispatchTime = date.AddDays(1),
 						 HackathonId = id,
@@ -175,7 +186,7 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 					{
 						Id = Guid.NewGuid(),
 						Team = team[1],
-						Description = "",
+						Description = Faker.Lorem.Paragraph(),
 						Link = "https://github.com/ISBronny/FlueFlame",
 						DispatchTime = date.AddDays(1),
 						HackathonId = id,
@@ -184,7 +195,7 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 					{
 						Id = Guid.NewGuid(),
 						Team = team[2],
-						Description = "",
+						Description = Faker.Lorem.Paragraph(),
 						Link = "https://github.com/ISBronny/FlueFlame",
 						DispatchTime = date.AddDays(1),
 						HackathonId = id,

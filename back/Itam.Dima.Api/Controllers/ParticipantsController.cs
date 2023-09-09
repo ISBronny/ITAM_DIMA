@@ -1,6 +1,7 @@
 using AutoMapper;
 using Itam.Dima.Domain.Models;
 using Itam.Dima.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,11 +11,12 @@ namespace Itam.Dima.Api.Controllers;
 public class ParticipantsController : Controller
 {
 	private readonly AppDbContext _context;
+	private readonly UserManager<User> _userManager;
 
-	public ParticipantsController(AppDbContext context)
+	public ParticipantsController(AppDbContext context, UserManager<User> userManager)
 	{
 		_context = context;
-		
+		_userManager = userManager;
 	}
 
 	[HttpGet("participants")]
@@ -74,5 +76,23 @@ public class ParticipantsController : Controller
 				endDate=h.EndDate
 			})
 		});
+	}
+	
+	
+	[HttpGet("participant/team/{team}")]
+	public async Task<IActionResult> GetParticipantByTeam([FromRoute] string team)
+	{
+		var id = Guid.Parse(team);
+		var t = await _context.Teams
+			.Include(x=>x.Leader)
+			.Include(x=>x.Members)
+			.FirstAsync(x => x.Id == id);
+
+		return Ok(t.Members.Concat(new[] { t.Leader }).Select(x => new
+		{
+			name = x.FullName,
+			id = x.Id,
+			telegram = x.Telegram,
+		}));
 	}
 }

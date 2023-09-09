@@ -40,7 +40,7 @@ public class AccountController : Controller
 		if (result.Succeeded)
 		{
 			await _signInManager.SignInAsync(user, false);
-			return Ok(GetToken(user.Type));
+			return Ok(GetToken(user));
 		}
 
 		foreach (var error in result.Errors)
@@ -60,7 +60,7 @@ public class AccountController : Controller
 			await _signInManager.PasswordSignInAsync(model.Telegram, model.Password, model.RememberMe, false);
 		
 		if (result.Succeeded)
-			return Ok(GetToken(_userManager.Users.First(x=>x.UserName == model.Telegram).Type));
+			return Ok(GetToken(_userManager.Users.First(x=>x.UserName == model.Telegram)));
 		
 		ModelState.AddModelError("", "Неправильный логин и (или) пароль");
 		
@@ -73,17 +73,21 @@ public class AccountController : Controller
 		await _signInManager.SignOutAsync();
 		return Ok();
 	}
-	
-	private static string GetToken(UserType type)
+
+	private static string GetToken(User user)
 	{
 
 		var token = new JwtSecurityToken(
 			new JwtHeader(),
-			new JwtPayload(AuthOptions.ISSUER, AuthOptions.AUDIENCE, Array.Empty<Claim>(),  null, DateTime.Now.AddYears(1))
+			new JwtPayload(AuthOptions.ISSUER, AuthOptions.AUDIENCE, Array.Empty<Claim>(), null,
+				DateTime.Now.AddYears(1))
 		);
 
-		token.Payload["type"] = type.ToString();
+		token.Payload["type"] = user.Type.ToString();
+		token.Payload["login"] = user.Telegram;
 
-		return new JwtSecurityTokenHandler().WriteToken(token);;
+
+		return new JwtSecurityTokenHandler().WriteToken(token);
+		;
 	}
 }

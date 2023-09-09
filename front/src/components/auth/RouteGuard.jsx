@@ -16,7 +16,7 @@ const RouteGuard = ({ forAdmin, component: Component, ...rest }) => {
     return (
         <>
             {!!token ?
-            (forAdmin ? (decoded['type'] === user_type_admin  ? <Component {...rest} /> : <h1 className="dark:text-white font-bold text">Нет доступа</h1> ) : <component {...rest} />  )
+            (forAdmin ? (decoded['type'] === user_type_admin  ? <Component {...rest} /> : <h1 className="dark:text-white font-bold text">Нет доступа</h1> ) : <Component {...rest} />  )
             : <Navigate to={'/login'} />}
         </>
     );
@@ -48,4 +48,14 @@ export const setAuthToken = token => {
     }
     else
         delete axios.defaults.headers.common["Authorization"];
+}
+
+export const getCurrentUseLogin = () => {
+    const token = localStorage.getItem("token");
+    if(!token)
+        return undefined;
+    const decoded = jwt_decode(token);
+    if(!decoded)
+        return undefined;
+    return decoded['login'];
 }

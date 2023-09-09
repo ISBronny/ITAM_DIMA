@@ -49,7 +49,7 @@ const HackathonCard = ({name, description, imageUrl}) => {
         <>
             <div className="mx-auto min-w-full m-5 max-w-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <img className="rounded-t-lg mx-auto w-full object-cover h-96"
-                     src={imageUrl}
+                     src={!imageUrl ? imageUrl : "https://images.wallpaperscraft.ru/image/single/fon_temnyj_piatna_51861_1920x1080.jpg"}
                      alt=""/>
                 <div className="px-5 pt-5">
                     <a href="#">
