@@ -65,11 +65,10 @@ public class ParticipantsController : Controller
 				id = t.Id,
 				name = t.Name,
 				cratedAt = t.CreatedAt,
-				leader = t.Leader
+				leader = t.Leader.Telegram
 			}),
 			hacks = hacks.Select(h =>new {
 				id=h.Id,
-				results=h.HackathonResults,
 				name=h.Name,
 				startDate=h.StartDate,
 				endDate=h.EndDate

@@ -69,5 +69,7 @@ public class AppDbContext : IdentityDbContext<User>
 			.HasOne(x => x.Team);
 		modelBuilder.Entity<HackathonSolution>()
 			.HasOne(x => x.Hackathon);
+		modelBuilder.Entity<HackathonSolution>()
+			.HasOne(x => x.Hackathon);
 	}
 }

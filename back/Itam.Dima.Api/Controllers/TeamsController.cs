@@ -21,24 +21,42 @@ public class TeamsController : Controller
 	[AllowAnonymous]
 	public async Task<ActionResult> GetAll()
 	{
-		var teams = await _context.Teams.Include(x=>x.Hackathons)
+		var teams = await _context.Teams.Include(x => x.Hackathons).Include(team => team.Leader)
+			.Include(team => team.Members)
 			.OrderBy(x=>x.Name)
 			.ToListAsync();
 		
-		return Ok(teams);
+		return Ok(teams.Select(t=> new
+		{
+			id=t.Id,
+			name=t.Name,
+			leader=t.Leader.Telegram,
+			createdAt=t.CreatedAt,
+			membersCount = t.Members.Count + 1
+		}));
 	}
 	
-	[HttpGet("/user/{login}")]
+	[HttpGet("user/{login}")]
 	[AllowAnonymous]
 	public async Task<ActionResult> GetForUser([FromRoute] string login)
 	{
 		var teams = await _context.Users.Where(x => x.Telegram == login)
 			.Include(x => x.Teams)
+			.ThenInclude(x=>x.Leader)
+			.Include(x => x.Teams)
+			.ThenInclude(x=>x.Members)
 			.SelectMany(x => x.Teams)
 			.ToListAsync();
 			
 		
-		return Ok(teams);
+		return Ok(teams.Select(t=> new
+		{
+			id=t.Id,
+			name=t.Name,
+			leader=t.Leader.Telegram,
+			createdAt=t.CreatedAt,
+			membersCount = t.Members.Count + 1
+		}));
 	}
 	
 	[HttpGet("{id}")]

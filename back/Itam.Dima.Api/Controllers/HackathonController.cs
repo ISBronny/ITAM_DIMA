@@ -35,12 +35,14 @@ public class HackathonController : Controller
 			.Include(x=>x.Teams)
 			.ThenInclude(x=>x.Hackathons)
 			.ThenInclude(x=>x.HackathonResults)
+			.Include(x=>x.Teams)
+			.ThenInclude(x=>x.Leader)
 			.FirstAsync(x => x.Telegram == login);
 		
 		return Ok(u.Teams.Where(t=>t.Leader.Telegram == u.Telegram).SelectMany(x=>x.Hackathons).Select(h=> new
 		{
 			id=h.Id,
-			results=h.HackathonResults,
+			//results=h.HackathonResults,
 			name=h.Name,
 			role="leader",
 			startDate=h.StartDate,
@@ -48,7 +50,7 @@ public class HackathonController : Controller
 		}).Concat(u.Teams.Where(t=>t.Leader.Telegram != u.Telegram).SelectMany(x=>x.Hackathons).Select(h=> new
 		{
 			id=h.Id,
-			results=h.HackathonResults,
+			//results=h.HackathonResults,
 			name=h.Name,
 			role="member",
 			startDate=h.StartDate,

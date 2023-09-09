@@ -6,20 +6,24 @@ export const TeamsTable = ({user= null, search= true}) => {
 
     const [state, setState] = useState({
         isLoading: true,
-        teamsRows: false,
+        teams: false,
         filter: '',
     });
 
     useEffect(() => {
-        if (state.isLoading)
-            fetch(`${process.env.REACT_APP_BACKEND_URL}/teams/`+ (user != null ? `user/${user}/` : ""), {
+        if (state.isLoading){
+            let url = `${process.env.REACT_APP_BACKEND_URL}/teams/`+ (user != null ? `user/${user}` : "");
+            console.log('URL:', url)
+            fetch(url, {
                 method: 'get',
             })
                 .then(x => x.json())
                 .then(json => {
-                    setState({...state, isLoading: false, teamsRows: json})
+                    setState({...state, isLoading: false, teams: json})
                 })
                 .catch(x => console.log(x))
+        }
+
 
     }, [state, user]);
 
@@ -66,7 +70,11 @@ export const TeamsTable = ({user= null, search= true}) => {
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-                            Количество участий
+                           Лидер
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+                            Участников
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
@@ -79,7 +87,7 @@ export const TeamsTable = ({user= null, search= true}) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {state.isLoading ? <tr></tr> : state.teamsRows.filter(h=>h.name.startsWith(state.filter)).map(h =>
+                    {state.isLoading ? <tr></tr> : state.teams.filter(h=>h.name.startsWith(state.filter)).map(h =>
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -90,10 +98,14 @@ export const TeamsTable = ({user= null, search= true}) => {
 
                             </td>
                             <td className="px-6 py-4">
-                                Laptop
+                                <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/participant/${h.leader}`}>{h.leader}</NavLink>
+
                             </td>
                             <td className="px-6 py-4">
-                                0
+                                {h.membersCount}
+                            </td>
+                            <td className="px-6 py-4">
+                                {0}
                             </td>
                             <td className="px-6 py-4">
                                 <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/team/${h.id}`}>Профиль</NavLink>

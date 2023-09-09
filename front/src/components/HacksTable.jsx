@@ -6,7 +6,7 @@ export const HacksTable = ({user, search= false}) => {
 
     const [state, setState] = useState({
         isLoading: true,
-        teamsRows: false,
+        hacks: false,
         filter: '',
     });
 
@@ -17,7 +17,7 @@ export const HacksTable = ({user, search= false}) => {
             })
                 .then(x => x.json())
                 .then(json => {
-                    setState({...state, isLoading: false, teamsRows: json})
+                    setState({...state, isLoading: false, hacks: json})
                 })
                 .catch(x => console.log(x))
 
@@ -72,10 +72,14 @@ export const HacksTable = ({user, search= false}) => {
                             className="px-6 py-3">
                             Победа
                         </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                    {state.isLoading ? <tr></tr> : state.teamsRows.filter(h=>h.name.startsWith(state.filter)).map(h =>
+                    {state.isLoading ? <tr></tr> : state.hacks.map(h =>
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -91,7 +95,7 @@ export const HacksTable = ({user, search= false}) => {
                                 Нет
                             </td>
                             <td className="px-6 py-4">
-                                <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/team/${h.id}`}>Профиль</NavLink>
+                                <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/hackathon/${h.id}`}>Хакатон</NavLink>
                             </td>
                         </tr>
                     )}

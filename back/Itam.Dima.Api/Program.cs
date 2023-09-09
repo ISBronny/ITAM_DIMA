@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Itam.Dima.Domain.Models;
 using Itam.Dima.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -28,6 +29,11 @@ builder.Services.AddSingleton<MinioClient>(x => new MinioClient()
 );
 builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres")));
+
+builder.Services.ConfigureHttpJsonOptions(x =>
+{
+	x.SerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 	{
@@ -139,14 +145,15 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 			}));
 		}
 
-		foreach (var team in context.Teams.ToList().Chunk(6))
+		foreach (var team in context.Teams.ToList().OrderBy(_ => Guid.NewGuid()).Chunk(6))
 		{
 			if(team.Length < 3)
 				break;
-			var date = DateTime.Now.AddDays(-Random.Shared.Next(1000));
-			await context.Hackathons.AddAsync(new Hackathon()
+			var date = DateTime.UtcNow.AddDays(-Random.Shared.Next(1000));
+			var id = Guid.NewGuid();
+			context.Hackathons.Add(new Hackathon()
 			{
-				Id = Guid.NewGuid(),
+				Id = id,
 				Name = $"ITAM_{Random.Shared.Next(1000)}",
 				Description = "",
 				StartDate = date,
@@ -157,19 +164,34 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 					FirstPlace = new HackathonSolution()
 					{
 						Id = Guid.NewGuid(),
-						 Team = team[0]
+						 Team = team[0],
+						 Description = "",
+						 Link = "https://github.com/ISBronny/FlueFlame",
+						 DispatchTime = date.AddDays(1),
+						 HackathonId = id,
+						 
 					},
 					SecondPlace = new HackathonSolution()
 					{
 						Id = Guid.NewGuid(),
-						Team = team[1]
+						Team = team[1],
+						Description = "",
+						Link = "https://github.com/ISBronny/FlueFlame",
+						DispatchTime = date.AddDays(1),
+						HackathonId = id,
 					},
 					ThirdPlace = new HackathonSolution()
 					{
 						Id = Guid.NewGuid(),
-						Team = team[2]
+						Team = team[2],
+						Description = "",
+						Link = "https://github.com/ISBronny/FlueFlame",
+						DispatchTime = date.AddDays(1),
+						HackathonId = id,
 					}
-				}
+				},
+				ImageObjectName = "",
+				Teams = team.ToList()
 			});
 		}
 

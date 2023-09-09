@@ -62,6 +62,7 @@ public class HackathonSolution
 {
 	public Guid Id { get; set; }
 	public Team Team { get; set; }
+	public Guid HackathonId { get; set; }
 	public Hackathon Hackathon { get; set; }
 	public string Description { get; set; }
 	public string Link { get; set; }
