@@ -1,53 +1,105 @@
+import {useEffect, useState} from "react";
+import {NavLink} from "react-router-dom";
 
 
 export const ParticipantsPage = () => {
 
-    let participants = [
-        {
-            name: "Team 1",
-            description: "Karen",
-            imageUrl: "https://plus.unsplash.com/premium_photo-1681248156422-c01a2c803588?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-        },
-        {
-            name: "Team 2",
-            description: "Anna",
-            imageUrl: "https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-        },
-        {
-            name: "Team 3",
-            description: "Tumba",
-            imageUrl: "https://images.unsplash.com/photo-1492462543947-040389c4a66c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-        }
-    ] //Получить с бэка
+    const [state, setState] = useState({
+        isLoading: true,
+        participants: [],
+        filter: '',
+    });
+
+    useEffect(() => {
+        if (state.isLoading)
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/participants/`, {
+                method: 'get',
+            })
+                .then(x => x.json())
+                .then(json => {
+                    setState({...state, isLoading: false, participants: json})
+                })
+                .catch(x => console.log(x))
+
+    }, [state]);
+
 
     return (
         <>
-            <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Участники</h2>
-                {participants.map(h => <ParticipantCard
-                    name={h.name}
-                    description={h.description}
-                    imageUrl={h.imageUrl}
-                />)}
-        </>
-    )
-}
-
-const ParticipantCard = ({name, description, imageUrl}) => {
-    return(
-        <>
-            <div className="m-5 max-w-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img className="md:flex rounded-t-lg" src={imageUrl} alt="" />
-                </a>
-                <div className="p-5">
-                    <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
-                    </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
-                    <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Beep
-                    </a>
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="pb-4 bg-white dark:bg-gray-900">
+                    <label for="table-search"
+                           class="sr-only">Search</label>
+                    <div class="relative mt-1">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none"
+                                 viewBox="0 0 20 20">
+                                <path stroke="currentColor"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                            </svg>
+                        </div>
+                        <input type="text"
+                               id="table-search"
+                               class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="Поиск команды"
+                               onChange={event => setState({...state, filter: event.currentTarget.value})}
+                        />
+                    </div>
                 </div>
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col"
+                            className="p-4">
+                            ФИО
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+                            Телеграм
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+                            Участия
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+                            Победы
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {state.isLoading ? <tr></tr> : state.participants.filter(h=>h.name.startsWith(state.filter)).map(h =>
+                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {h.name}
+                            </th>
+                            <td className="px-6 py-4">
+                                {h.telegram}
+                            </td>
+                            <td className="px-6 py-4">
+                                {h.participations}
+                            </td>
+                            <td className="px-6 py-4">
+                                0
+                            </td>
+                            <td className="px-6 py-4">
+                                <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/participant/${h.telegram}`}>Профиль</NavLink>
+                            </td>
+                        </tr>
+                    )}
+                    </tbody>
+                </table>
             </div>
         </>
     )

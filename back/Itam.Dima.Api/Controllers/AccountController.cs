@@ -64,7 +64,7 @@ public class AccountController : Controller
 		
 		ModelState.AddModelError("", "Неправильный логин и (или) пароль");
 		
-		return BadRequest(model);
+		return BadRequest(ModelState);
 	}
  
 	[HttpPost]

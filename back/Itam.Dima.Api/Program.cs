@@ -128,21 +128,16 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 		}).ToList();
 		foreach (var user in users)
 		{
-			await userManager.CreateAsync(user, "MrBen228_");
-			await context.Teams.AddRangeAsync(Enumerable.Range(0, users.Count / 5).Select(i =>
+			var result = await userManager.CreateAsync(user, "MrBen228_");
+			await context.Teams.AddRangeAsync(context.Users.Where(x=>x.Type == UserType.Participant).ToList().Chunk(5).Select((members, i) => new Team()
 			{
-				var members = users.Skip(i * 5).Take(5).ToArray();
-				return new Team()
-				{
-					Id = Guid.NewGuid(),
-					Leader = members.First(),
-					Members = members.Skip(1).ToList(),
-					Name = $"TestTeam{i}",
-					CreatedAt = DateTime.UtcNow,
-				};
+				Id = Guid.NewGuid(),
+				Leader = members.First(),
+				Members = members.Skip(1).ToList(),
+				Name = $"TestTeam{i}",
+				CreatedAt = DateTime.UtcNow,
 			}));
 		}
-		
 	}
 	catch (Exception)
 	{
