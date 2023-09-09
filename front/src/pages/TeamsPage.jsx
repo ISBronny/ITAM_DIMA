@@ -6,6 +6,6 @@ import {TeamsTable} from "../components/TeamsTable";
 
 export const TeamsPage = () => {
     return(
-        <TeamsTable/>
+        <TeamsTable />
     );
 }
