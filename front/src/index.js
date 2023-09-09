@@ -5,14 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {HackathonsPage} from "./pages/HackathonsPage";
-import {CreateHackathonPage} from "./pages/CreateHackathonPage";
-import {AuthorizationPage} from "./pages/AuthorizationPage";
 import {ProfilePage} from "./pages/ProfilePage";
 import {TeamsPage} from "./pages/TeamsPage"
 import {ParticipantsPage} from "./pages/ParticipantsPage";
 import {RegistrationPage} from "./pages/RegistrationPage";
 import RouteGuard from "./components/auth/RouteGuard";
-import {RegisterForm} from "./components/auth/RegisterForm";
+import {CreateHackathonPage} from "./pages/CreateHackathonPage";
 import {TeamDescriptionPage} from "./pages/TeamDescriptionPage"
 
 const router = createBrowserRouter([
@@ -27,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: "/hackathon/create",
                 element:
-                    <RouteGuard forAdmin={true}/>,
+                    <RouteGuard forAdmin={true} component={CreateHackathonPage}/>,
             },
             {
                 path: "/teams",

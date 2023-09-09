@@ -1,5 +1,4 @@
 import React from 'react';
-import {AuthorizationPage} from "../../pages/AuthorizationPage";
 import jwt_decode from "jwt-decode";
 import {Navigate, Route} from "react-router";
 import axios from "axios";
@@ -8,7 +7,7 @@ export const user_type_participant = "Participant";
 export const user_type_admin = "Admin";
 
 
-const RouteGuard = ({ forAdmin, component, ...rest }) => {
+const RouteGuard = ({ forAdmin, component: Component, ...rest }) => {
 
 
     const token = localStorage.getItem("token");
@@ -17,7 +16,7 @@ const RouteGuard = ({ forAdmin, component, ...rest }) => {
     return (
         <>
             {!!token ?
-            (forAdmin ? (decoded['type'] === user_type_admin  ? <component {...rest} /> : <h1 className="dark:text-white font-bold text">Нет доступа</h1> ) : <component {...rest} />  )
+            (forAdmin ? (decoded['type'] === user_type_admin  ? <Component {...rest} /> : <h1 className="dark:text-white font-bold text">Нет доступа</h1> ) : <component {...rest} />  )
             : <Navigate to={'/login'} />}
         </>
     );
