@@ -7,6 +7,7 @@ export const TeamsTable = () => {
     const [state, setState] = useState({
         isLoading: true,
         teamsRows: false,
+        filter: '',
     });
 
     useEffect(() => {
@@ -46,7 +47,9 @@ export const TeamsTable = () => {
                         <input type="text"
                                id="table-search"
                                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               placeholder="Search for items"/>
+                               placeholder="Поиск команды"
+                               onChange={event => setState({...state, filter: event.currentTarget.value})}
+                        />
                     </div>
                 </div>
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -75,7 +78,7 @@ export const TeamsTable = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {state.isLoading ? <tr></tr> : state.teamsRows.map(h =>
+                    {state.isLoading ? <tr></tr> : state.teamsRows.filter(h=>h.name.startsWith(state.filter)).map(h =>
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
