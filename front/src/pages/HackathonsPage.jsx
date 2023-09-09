@@ -1,6 +1,6 @@
-import axios from "axios";
 import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
+import {isAdmin} from "../components/auth/RouteGuard";
 
 
 export const HackathonsPage = () => {
@@ -26,9 +26,11 @@ export const HackathonsPage = () => {
         <>
             <div className="flex justify-between">
                 <h1 className="font-bold leading-7 text-gray-900 dark:text-white sm:truncate sm:text-3xl sm:tracking-tight ">Хакатоны</h1>
-                <NavLink to={"/hackathon/create"}
-                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                >Добавить Хакатон</NavLink>
+                {isAdmin() ?
+                    <NavLink to={"/hackathon/create"}
+                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    >Добавить Хакатон</NavLink>
+                    : ""}
             </div>
 
             <div>

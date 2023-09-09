@@ -21,12 +21,15 @@ public class TeamsController : Controller
 	[AllowAnonymous]
 	public async Task<ActionResult> GetAll()
 	{
-		var hacks = await _context.Hackathons.ToListAsync();
-		hacks.Reverse();
-		return Ok(hacks);
+		var teams = await _context.Teams.Include(x=>x.Hackathons)
+			.OrderBy(x=>x.Name)
+			.ToListAsync();
+		
+		return Ok(teams);
 	}
 	
 	[HttpPost]
+	[AllowAnonymous]
 	public async Task<IActionResult> Create(CreateTeamRequest request)
 	{
 		if (!ModelState.IsValid) return BadRequest(ModelState);

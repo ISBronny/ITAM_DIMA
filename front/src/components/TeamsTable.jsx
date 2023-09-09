@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {NavLink} from "react-router-dom";
 
 
 export const TeamsTable = () => {
@@ -6,6 +7,7 @@ export const TeamsTable = () => {
     const [state, setState] = useState({
         isLoading: true,
         teamsRows: false,
+        filter: '',
     });
 
     useEffect(() => {
@@ -17,52 +19,88 @@ export const TeamsTable = () => {
                 .then(json => {
                     setState({...state, isLoading: false, teamsRows: json})
                 })
-                .catch(x=>console.log(x))
+                .catch(x => console.log(x))
 
     }, [state]);
 
 
     return (
         <>
-            <div className="flex items-top justify-center h-screen pt-10">
-                <div className="max-w-[100%] rounded overflow-hidden w-full">
-                    <table className="w-full shadow">
-                        <thead className="dark:bg-gray-900 bg-gray-100">
-                        <tr>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 uppercase sm:py-4 py-3 sm:pl-4 pl-3">
-                                <div className="flex items-center">
-                                    Название команды
-                                </div>
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="pb-4 bg-white dark:bg-gray-900">
+                    <label for="table-search"
+                           class="sr-only">Search</label>
+                    <div class="relative mt-1">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none"
+                                 viewBox="0 0 20 20">
+                                <path stroke="currentColor"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                            </svg>
+                        </div>
+                        <input type="text"
+                               id="table-search"
+                               class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="Поиск команды"
+                               onChange={event => setState({...state, filter: event.currentTarget.value})}
+                        />
+                    </div>
+                </div>
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col"
+                            className="p-4">
+                            Название команды
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+                           Дата создания
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+                            Количество участий
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+                            Победы
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {state.isLoading ? <tr></tr> : state.teamsRows.filter(h=>h.name.startsWith(state.filter)).map(h =>
+                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {h.name}
+                            </th>
+                            <td className="px-6 py-4">
+                                {new Date(Date.parse(h.createdAt)).toLocaleDateString()}
+
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-4 uppercase">
-                                <div className="flex items-center">
-                                    Дата создания
-                                </div>
+                            <td className="px-6 py-4">
+                                Laptop
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-4 uppercase">
-                                <div className="flex items-center">
-                                    Кол-во участий
-                                </div>
+                            <td className="px-6 py-4">
+                                0
                             </td>
-                            <td className="text-xs font-semibold text-gray-800 dark:text-gray-100 pl-4 uppercase">
-                                <div className="flex items-center">
-                                    Кол-во побед
-                                </div>
+                            <td className="px-6 py-4">
+                                <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/team/${h.id}`}>Профиль</NavLink>
                             </td>
                         </tr>
-                        </thead>
-                        <tbody className="bg-gray-50 dark:bg-gray-800">
-                            <div>
-                                {state.isLoading ? "" : state.teamsRows.map(h => <TeamsTableRow
-                                    name={h.name}
-                                    date={h.date}
-                                    entriesNumber={h.entriesNumber}
-                                    winsNumber={h.winsNumber}
-                                />)}
-                            </div>
-                        </tbody>
-                    </table>
-                </div>
+                    )}
+                    </tbody>
+                </table>
             </div>
         </>
     )
@@ -74,7 +112,7 @@ const TeamsTableRow = ({name, date, entriesNumber, winsNumber}) => {
             <td className="py-4 sm:pl-6 pl-4">
                 <div className="flex items-center">
                     <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width={22} height={19} viewBox="0 0 22 19" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} viewBox="0 0 22 22" fill="none">
                             <g opacity="0.2">
                                 <path d="M22 16.8462C22 18.0356 21.0149 19 19.8 19H2.2C0.98505 19 0 18.0356 0 16.8462V7.15385C0 5.96438 0.98505 5 2.2 5H19.8C21.0149 5 22 5.96438 22 7.15385V16.8462Z" fill="#231F20" />
                             </g>

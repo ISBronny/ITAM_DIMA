@@ -93,4 +93,58 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 	await context.Database.MigrateAsync();
 }
 
+using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+{
+	var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+	var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
+	try
+	{
+		await userManager.CreateAsync(new User()
+		{
+			UserName = "Admin",
+			FullName = "Админ Админович",
+			Telegram = "Admin",
+			Type = UserType.Admin
+		}, "ITAM_ADMIN228");
+		
+		
+	}
+	catch (Exception)
+	{
+		// ignored
+	}
+
+	try
+	{
+		var users = Enumerable.Range(0, 20).Select(i => new User()
+		{
+			UserName = $"TestUser{i}",
+			FullName = "Тест Тестович",
+			Telegram = $"TestUser{i}",
+			Type = UserType.Participant
+		}).ToList();
+		foreach (var user in users)
+		{
+			await userManager.CreateAsync(user);
+			await context.Teams.AddRangeAsync(Enumerable.Range(0, users.Count / 5).Select(i =>
+			{
+				var members = users.Skip(i * 5).Take(5).ToArray();
+				return new Team()
+				{
+					Id = Guid.NewGuid(),
+					Leader = members.First(),
+					Members = members.Skip(1).ToList(),
+					Name = $"TestTeam{i}",
+					CreatedAt = DateTime.UtcNow,
+				};
+			}));
+		}
+		
+	}
+	catch (Exception)
+	{
+		// ignored
+	}
+}
+
 app.Run();
