@@ -105,7 +105,9 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 			FullName = "Админ Админович",
 			Telegram = "Admin",
 			Type = UserType.Admin
-		});
+		}, "ITAM_ADMIN228");
+		
+		
 	}
 	catch (Exception)
 	{
