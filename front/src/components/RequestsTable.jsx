@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 import {toast} from "react-toastify";
-
+import "../styles/main.css"
 
 export const RequestsTable = ({user= undefined, search= false, forAdmin = false}) => {
 
@@ -33,6 +33,11 @@ export const RequestsTable = ({user= undefined, search= false, forAdmin = false}
 
     return (
         <>
+            <>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=M+PLUS+Rounded+1c:wght@700&family=Overpass:wght@500&display=swap');
+                </style>
+            </>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 {search ?                 <div className="pb-4 bg-white dark:bg-gray-900">
                         <label htmlFor="table-search"
@@ -53,14 +58,14 @@ export const RequestsTable = ({user= undefined, search= false, forAdmin = false}
                             </div>
                             <input type="text"
                                    id="table-search"
-                                   className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                   className="comforta block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                    placeholder="Поиск"
                                    onChange={event => setState({...state, filter: event.currentTarget.value})}
                             />
                         </div>
                     </div>
                     : ""}
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="comforta w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col"
@@ -89,7 +94,7 @@ export const RequestsTable = ({user= undefined, search= false, forAdmin = false}
                     </thead>
                     <tbody>
                     {state.isLoading ? <tr></tr> : state.requests.filter(r=>r.name.startsWith(state.filter)).map(r =>
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <tr className="comforta bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {r.name}
