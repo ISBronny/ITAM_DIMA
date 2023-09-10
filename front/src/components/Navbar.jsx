@@ -6,6 +6,7 @@ import {isAdmin, isAuthorized} from "./auth/RouteGuard";
 import {useEffect, useState} from "react";
 import "../styles/main.css"
 import {} from "../assets/images/IT.svg"
+import ITAM from "../assets/images/ITAM.png"
 
 export const Navbar = () => {
 
@@ -45,7 +46,7 @@ export const Navbar = () => {
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex flex-shrink-0 items-center">
-                            <img className="h-8 w-auto" src="../assets/images/IT.png" alt="Your Company"/>
+                            <img src={require('../assets/images/ITAM.png')} alt="logo" className="brand-logo h-8 w-auto"/>
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="montessrat flex space-x-4">
