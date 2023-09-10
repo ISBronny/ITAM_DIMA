@@ -5,7 +5,10 @@ import json
 from django.http import JsonResponse
 import requests
 import re
-################################
+
+# Добавьте переменные окружения для URL
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+API_BASE_URL = os.getenv('API_BASE_URL', 'http://localhost:5080')  # Задайте URL вашего API
 
 file_path = 'users.json'
 if os.path.isfile(file_path) and os.path.getsize(file_path) > 0:
@@ -14,24 +17,23 @@ if os.path.isfile(file_path) and os.path.getsize(file_path) > 0:
 else:
     data = {}
 
-#записываем в словарь их id
+# Записываем в словарь их id
 hash_table = {}
 for key, value in data.items():
     hash_table[int(key)] = value
 
-#id admin, нужно вставить свой
-#id групп
+# id admin, нужно вставить свой
+# id групп
 id_groups = []
 id_admin = [641909711]
 
-##################################
-bot = telebot.TeleBot('6670372110:AAGW-7OX7RBl3b6KYwR_10q6BTxK6x3z2zw')
+bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
 @bot.message_handler(commands=['set_admin'])
 def set_admin(message):
     id_admin.append(message.chat.id)
 
-#приветствие
+# приветствие
 @bot.message_handler(commands=['start'])
 def start(message):
     mes = f"""Здравствуйте, {message.from_user.username}
@@ -41,7 +43,7 @@ def start(message):
 \t/set_admin - установить админа для рассылки (для тестирования добавил)
 \t/ls <i>"текст"</i> - рассылка всем в лс(только админы)
 \t/chats <i>"текст"</i> - рассылка в чаты(нужно закинуть бота в чат и прописать /start) (только админы)
-\t/group <i>"текст"</i> - рассылка в тг канал(нужно  быть админом и ручками добавить id канала) (только админы)
+\t/group <i>"текст"</i> - рассылка в тг канал(нужно быть админом и ручками добавить id канала) (только админы)
 \t/support <i>"текст"</i> - вопрос организатору(участники)
 \t/answer <i>@UserName "текст"</i> - ответ на вопрос (для админа)"""
     bot.send_message(message.chat.id, mes, parse_mode='html')
@@ -55,8 +57,7 @@ def start(message):
 @bot.message_handler(commands=['register'])
 def reg(message):
     global data_r
-    global url
-    url = 'http://localhost:5080/register'
+    url = f'{API_BASE_URL}/register'  # Используйте переменную окружения для URL
     data_r = {
         "fullName": "",
         "telegram": "",
@@ -115,7 +116,7 @@ def reg6(message):
 def create_team(message):
     global data_c_t
     global url
-    url = 'http://localhost:5080/register'
+    url = f'{API_BASE_URL}/team'
     data_c_t = {
   "name": "",
   "leaderUserName": "",
@@ -256,7 +257,7 @@ def ls(message):
     if message.chat.id in id_admin:
         if not message.chat.id in hash_table.keys():
             hash_table[message.chat.id] = message.chat.id
-            with open('C:\\Users\\alast\\PycharmProjects\\telebot_mailing\\users.json', 'w') as file:
+            with open('users.json', 'w') as file:
                 json.dump(hash_table, file)
         verb = message.text.split()
         mes = ' '.join(verb[1:])
@@ -303,8 +304,5 @@ def answer(message):
         ans = 'Такого пользователя нет'
         bot.send_message(message.chat.id, ans, parse_mode='html')
         return
-
-
-
 bot.polling(none_stop=True)
 
