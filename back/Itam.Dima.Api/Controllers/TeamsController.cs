@@ -64,7 +64,16 @@ public class TeamsController : Controller
 	public async Task<ActionResult> GetTeam([FromRoute] string id)
 	{
 		var guid = Guid.Parse(id);
-		var team = await _context.Teams.FirstAsync(x => x.Id == guid);
+		var team = await _context.Teams
+			.Include(x=>x.Members)
+			.Include(x=>x.Leader)
+			.FirstAsync(x => x.Id == guid);
+
+		team.Leader.Teams = null;
+		foreach (var teamMember in team.Members)
+		{
+			teamMember.Teams = null;
+		}
             
 		return Ok(team);
 	}

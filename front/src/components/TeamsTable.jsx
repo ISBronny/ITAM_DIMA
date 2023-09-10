@@ -101,11 +101,9 @@ export const TeamsTable = ({user= null, search= true}) => {
                             </th>
                             <td className="px-6 py-4">
                                 {new Date(Date.parse(h.createdAt)).toLocaleDateString()}
-
                             </td>
                             <td className="px-6 py-4">
                                 <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/participant/${h.leader}`}>{h.leader}</NavLink>
-
                             </td>
                             <td className="px-6 py-4">
                                 {h.membersCount}

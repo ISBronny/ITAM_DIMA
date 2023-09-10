@@ -126,7 +126,7 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 
 	try
 	{
-		var users = Enumerable.Range(0, 20).Select(i => new User()
+		var users = Enumerable.Range(0, 40).Select(i => new User()
 		{
 			UserName = $"TestUser{i}",
 			FullName = "Тест Тестович",
@@ -138,7 +138,7 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 			var result = await userManager.CreateAsync(user, "MrBen228_");
 		}
 		
-		context.Teams.AddRange(context.Users.Where(x=>x.Type == UserType.Participant).ToList().Chunk(5).Select((members, i) =>
+		context.Teams.AddRange(context.Users.Where(x=>x.Type == UserType.Participant).ToList().ChunkRandom(5).Select((members, i) =>
 		{
 			var team = new Team()
 			{
@@ -156,8 +156,9 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 
 		await context.SaveChangesAsync();
 
-		foreach (var team in context.Teams.ToList().OrderBy(_ => Guid.NewGuid()).Chunk(6))
+		foreach (var arr in context.Teams.ToList().OrderBy(_ => Guid.NewGuid()).ChunkRandom(10))
 		{
+			var team = arr.ToArray();
 			if(team.Length < 3)
 				break;
 			var date = DateTime.UtcNow.AddDays(-Random.Shared.Next(1000));
@@ -215,3 +216,19 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 }
 
 app.Run();
+
+public static class EnumerableExtensions
+{
+	public static IEnumerable<IEnumerable<T>> ChunkRandom<T>(this IEnumerable<T> array, int size)
+	{
+		var list = array.ToList();
+		var pointer = 0;
+		while (pointer < list.Count)
+		{
+			var take = 1 + Random.Shared.Next(size - 1);
+			yield return list.Skip(pointer).Take(take);
+			pointer += take;
+		}
+
+	}
+}

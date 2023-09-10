@@ -40,16 +40,20 @@ export const HackathonDescriptionPage = () => {
                         </div>
                     </div>
                 </div>
-                {!!state.hackathon.hackathonResults ? <Winners results={state.hackathon.hackathonResults}/> : ""}
-
-                <div className="col-span-3 h-96">
-                    <div className="w-full max-h-full h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
-                    </div>
-                </div>
-                <div className="col-span-3 h-96">
-                    <div className="w-full max-h-full h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
+                {!!state.hackathon.hackathonResults ?
+                    <Winners results={state.hackathon.hackathonResults}/> : ""}
+                <div className="col-span-6">
+                    <h5 className="text-center mb-3 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Участники</h5>
+                    <div className="flex flex-row">
+                            {!state.isLoading ? (chunkify(state.hackathon.teams, 3)).map(chunk => {
+                                return <div className="flex flex-col basis-1/3">
+                                    {chunk.map(t => {
+                                        return <div className="w-full ">
+                                            <TeamCard team={t}/>
+                                        </div>
+                                    })}
+                                </div>
+                            }) : ""}
                     </div>
                 </div>
             </div>
@@ -57,6 +61,91 @@ export const HackathonDescriptionPage = () => {
     );
 }
 
+const TeamCard = ({team}) => {
+
+    const [state, setState] = useState({
+        isLoading: true,
+        team: {},
+        filter: '',
+    });
+
+    useEffect(() => {
+        if (state.isLoading)
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/teams/${team.id}`, {
+                method: 'get',
+            })
+                .catch(x => console.log(x))
+                .then(x => x.json())
+                .then(json => {
+                    setState({...state, isLoading: false, team: json})
+                })
+                .catch(x => console.log(x))
+    }, [state]);
+
+    return (
+        <>
+            <div className="m-4">
+                {state.isLoading ? <div role="status"
+                                        className="max-w-sm animate-pulse">
+                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                    </div> :
+                    <div className="w-full max-h-full px-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
+                        <NavLink className="mb-2 text-2xl text-center mt-4 font-medium text-gray-900 dark:text-white hover:underline"
+                                 to={`/team/${team.id}`}>{state.team.name}</NavLink>
+                        {state.team.members.map(m=> <div>
+                                <p className="text-center text-sm mb-2 text-gray-500 dark:text-gray-400">{m.fullName}</p>
+                            </div>)
+                        }
+                    </div>
+                }
+            </div>
+
+        </>
+    )
+}
+
+function chunkify(a, n, balanced) {
+
+    if (n < 2)
+        return [a];
+
+    var len = a.length,
+        out = [],
+        i = 0,
+        size;
+
+    if (len % n === 0) {
+        size = Math.floor(len / n);
+        while (i < len) {
+            out.push(a.slice(i, i += size));
+        }
+    }
+
+    else if (balanced) {
+        while (i < len) {
+            size = Math.ceil((len - i) / n--);
+            out.push(a.slice(i, i += size));
+        }
+    }
+
+    else {
+
+        n--;
+        size = Math.floor(len / n);
+        if (len % size === 0)
+            size--;
+        while (i < size * n) {
+            out.push(a.slice(i, i += size));
+        }
+        out.push(a.slice(size * n));
+
+    }
+
+    return out;
+}
 
 
 const Winners = ({results}) => {
@@ -97,11 +186,13 @@ const Winners = ({results}) => {
 
 const WinnerCard = ({place, teamName, teamId, link, description}) => {
 
-    return(
+    return (
         <div className="w-full max-h-full px-6 h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
             <h5 className="text-center mb-1 mt-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{place} место</h5>
-            <NavLink className="mb-2 text-3xl font-medium text-gray-900 dark:text-white hover:underline" to={`/team/${teamId}`}>{teamName}</NavLink>
-            <a href={link} className="mb-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>
+            <NavLink className="mb-2 text-3xl font-medium text-gray-900 dark:text-white hover:underline"
+                     to={`/team/${teamId}`}>{teamName}</NavLink>
+            <a href={link}
+               className="mb-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>
             <p className="text-center text-sm mb-2 text-gray-500 dark:text-gray-400">{description}</p>
         </div>
     )
