@@ -36,17 +36,30 @@ export const TeamDescriptionPage =()=> {
                             <div>
                                 <p className="text-xl font-bold leading-none text-white">{state.group.name}</p>
                                 <div className="flex justify-between">
-                                    <div>
-                                        <p className="text-base font-bold leading-none text-white py-2 pr-3">Кол-во участий: 9</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-base font-bold leading-none text-white py-2">Кол-во побед: 3</p>
+                                    <div
+                                        className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+                                        <div className="grid grid-cols-2 row-gap-8 md:grid-cols-3">
+                                            <div className="text-center md:border-r">
+                                                <h6 className="text-4xl font-bold lg:text-5xl xl:text-2xl text-gray-100">144K</h6>
+                                                <p className="text-sm font-medium tracking-widest text-gray-400 uppercase lg:text-base">
+                                                    Победы
+                                                </p>
+                                            </div>
+                                            <div className="text-center md:border-r">
+                                                <h6 className="text-4xl font-bold lg:text-5xl xl:text-2xl text-gray-100">12.9K</h6>
+                                                <p className="text-sm font-medium tracking-widest text-gray-400 uppercase lg:text-base">
+                                                    Призёрства
+                                                </p>
+                                            </div>
+                                            <div className="text-center">
+                                                <h6 className="text-4xl font-bold lg:text-5xl xl:text-2xl text-gray-100">48.3K</h6>
+                                                <p className="text-sm font-medium tracking-widest text-gray-400 uppercase lg:text-base">
+                                                    Участия
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <p className="text-lg font-bold leading-none text-white">{state.group.description}</p>
-                                <p className="text-lg font-bold leading-none text-white">Да</p>
                             </div>
                         </div>
                     </div>
