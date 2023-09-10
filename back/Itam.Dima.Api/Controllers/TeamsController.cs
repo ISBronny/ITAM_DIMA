@@ -33,7 +33,14 @@ public class TeamsController : Controller
 			name=t.Name,
 			leader=t.Leader.Telegram,
 			createdAt=t.CreatedAt,
-			membersCount = t.Members.Count + 1
+			membersCount = t.Members.Count,
+			members = t.Members.Select(x => new
+			{
+				telegram=x.Telegram,
+				fullName=x.FullName,
+				email=x.Email,
+				number=x.PhoneNumber
+			})
 		}));
 	}
 	
