@@ -73,7 +73,7 @@ export const ProfilePage = () => {
                     </div>
                     {id === undefined || id === getCurrentUseLogin() ?
                     <div className="col-span-6 h-96">
-                        <div className="w-full max-h-full h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-900">
+                        <div className="w-full max-h-full h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-x-hidden overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-900">
                             <RequestsTable/>
                         </div>
                     </div>

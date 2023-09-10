@@ -27,6 +27,43 @@ public class HackathonController : Controller
 		return Ok(hacks);
 	}
 	
+	[HttpGet("{id}")]
+	[AllowAnonymous]
+	public async Task<ActionResult> GetAll(string id)
+	{
+		var guid = Guid.Parse(id);
+		var hack = await _context.Hackathons
+			.Include(x=>x.Teams)
+			.Include(x=>x.HackathonResults)
+			.ThenInclude(x=>x.FirstPlace)
+			.Include(x=>x.HackathonResults)
+			.ThenInclude(x=>x.SecondPlace)
+			.Include(x=>x.HackathonResults)
+			.ThenInclude(x=>x.ThirdPlace)
+
+			.FirstOrDefaultAsync(x=>x.Id == guid);
+
+		if (hack == null)
+			return NotFound();
+
+		if (hack.HackathonResults != null)
+		{
+			hack.HackathonResults.Hackathon = null;
+			hack.HackathonResults.Hackathon = null;
+			hack.HackathonResults.FirstPlace.Hackathon = null;
+			hack.HackathonResults.SecondPlace.Hackathon = null;
+			hack.HackathonResults.ThirdPlace.Hackathon = null;
+
+		}
+
+		foreach (var team in hack.Teams)
+		{
+			team.Hackathons = null;
+		}
+        
+		return Ok(hack);
+	}
+	
 	[HttpGet("user/{login}")]
 	[AllowAnonymous]
 	public async Task<ActionResult> GetForUser([FromRoute(Name = "login")] string login)
