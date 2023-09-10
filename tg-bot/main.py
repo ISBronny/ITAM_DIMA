@@ -22,12 +22,14 @@ for key, value in data.items():
 #id admin, нужно вставить свой
 #id групп
 id_groups = []
-
+id_admin = [641909711]
 
 ##################################
 bot = telebot.TeleBot('6670372110:AAGW-7OX7RBl3b6KYwR_10q6BTxK6x3z2zw')
 
-id_admin = 641909711
+@bot.message_handler(commands=['set_admin'])
+def set_admin(message):
+    id_admin.append(message.chat.id)
 
 #приветствие
 @bot.message_handler(commands=['start'])
@@ -35,7 +37,12 @@ def start(message):
     mes = f"""Здравствуйте, {message.from_user.username}
 Функции тг бота:
 \t/register - зарегистрироваться в системе
-\t/team"""
+\t/create_team - создать команду
+\t/set_admin - установить админа для рассылки (для тестирования добавил)
+\t/ls <i>"текст"</i> - рассылка всем в лс(только админы)
+\t/chats <i>"текст"</i> - рассылка в чаты(нужно закинуть бота в чат и прописать /start) (только админы)
+\t/group <i>"текст"</i> - рассылка в тг канал(нужно  быть админом и ручками добавить id канала) (только админы)
+\t/support <i>"текст"</i> - вопрос организатору(участники)"""
     bot.send_message(message.chat.id, mes, parse_mode='html')
 
     if not message.chat.id in hash_table.keys():
@@ -217,10 +224,10 @@ def create_team_member4(message):
 
 @bot.message_handler(commands=['ls'])
 def ls(message):
-    if id_admin == message.chat.id:
+    if message.chat.id in id_admin:
         if not message.chat.id in hash_table.keys():
             hash_table[message.chat.id] = message.chat.id
-            with open('C:\\Users\\alast\\PycharmProjects\\telebot_mailing\\users.json', 'w') as file:
+            with open('users.json', 'w') as file:
                 json.dump(hash_table, file)
         verb = message.text.split()
         mes = ' '.join(verb[1:])
@@ -232,10 +239,10 @@ def ls(message):
 
 @bot.message_handler(commands=['chats'])
 def ls(message):
-    if id_admin == message.chat.id:
+    if message.chat.id in id_admin:
         if not message.chat.id in hash_table.keys():
             hash_table[message.chat.id] = message.chat.id
-            with open('C:\\Users\\alast\\PycharmProjects\\telebot_mailing\\users.json', 'w') as file:
+            with open('users.json', 'w') as file:
                 json.dump(hash_table, file)
         verb = message.text.split()
         mes = ' '.join(verb[1:])
@@ -245,7 +252,7 @@ def ls(message):
 
 @bot.message_handler(commands=['groups'])
 def ls(message):
-    if id_admin == message.chat.id:
+    if message.chat.id in id_admin:
         if not message.chat.id in hash_table.keys():
             hash_table[message.chat.id] = message.chat.id
             with open('C:\\Users\\alast\\PycharmProjects\\telebot_mailing\\users.json', 'w') as file:
@@ -255,6 +262,15 @@ def ls(message):
         for key in id_groups:
             if key < 0:
                 bot.send_message(key, mes, parse_mode='html')
-
+@bot.message_handler(commands=['support'])
+def support(message):
+    for key in id_admin:
+        q = '@'+message.from_user.username
+        words = message.text.split()
+        words.pop(0)
+        new_string = ' '.join(words)
+        mes =f"""Вопрос от {q}:
+\t{new_string}"""
+        bot.send_message(key, mes, parse_mode='html')
 bot.polling(none_stop=True)
 
