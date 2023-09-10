@@ -12,7 +12,7 @@ RUN dotnet restore Itam.Dima.sln
 
 # copy everything else and build app
 COPY back/. ./back/
-RUN dotnet publish --self-contained false -c Release --no-restore -o /app/publish
+RUN dotnet publish --self-contained false -c Release --no-restore --property:PublishDir=/app/publish
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
