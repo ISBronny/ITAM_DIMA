@@ -43,7 +43,7 @@ def start(message):
 \t/chats <i>"текст"</i> - рассылка в чаты(нужно закинуть бота в чат и прописать /start) (только админы)
 \t/group <i>"текст"</i> - рассылка в тг канал(нужно  быть админом и ручками добавить id канала) (только админы)
 \t/support <i>"текст"</i> - вопрос организатору(участники)
-\t/answer <i>@UserName "текст"</i>"""
+\t/answer <i>@UserName "текст"</i> - ответ на вопрос (для админа)"""
     bot.send_message(message.chat.id, mes, parse_mode='html')
 
     if not message.chat.id in hash_table.keys():
