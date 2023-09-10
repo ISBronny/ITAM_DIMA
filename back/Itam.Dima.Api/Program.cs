@@ -214,6 +214,33 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 	{
 		// ignored
 	}
+
+	try
+	{
+		var users = context.Users.ToList();
+
+		if (!await context.Requests.AnyAsync())
+		{
+			foreach (var user in users)
+			{
+				context.Requests.AddRange(Enumerable.Range(0, 4).Select(i => new Request()
+				{
+					Id = Guid.NewGuid(),
+					Name = Faker.Lorem.Sentence(3),
+					Description = Faker.Lorem.Paragraph(),
+					Status = (RequestStatus)Random.Shared.Next(1,3),
+					CreatedAt = DateTime.UtcNow,
+					User = user
+				}));
+			}
+
+			await context.SaveChangesAsync();
+		}
+	}
+	catch (Exception)
+	{
+		// ignored
+	}
 }
 
 app.Run();

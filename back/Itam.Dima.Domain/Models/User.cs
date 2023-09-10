@@ -36,6 +36,23 @@ public enum Specialization
 	Ml
 }
 
+public class Request
+{
+	public Guid Id { get; set; }
+	public string Name { get; set; }
+	public string Description { get; set; }
+	public User User { get; set; }
+	public DateTime CreatedAt { get; set; }
+	public RequestStatus Status { get; set; }
+}
+
+public enum RequestStatus
+{
+	Pending = 1,
+	InProgress = 2,
+	Done = 3
+}
+
 public class Hackathon
 {
 	public Guid Id { get; set; }

@@ -15,6 +15,8 @@ public class AppDbContext : IdentityDbContext<User>
 	public DbSet<Hackathon> Hackathons { get; set; }
 	public DbSet<HackathonResults> HackathonResults { get; set; }
 	public DbSet<HackathonSolution> HackathonSolution { get; set; }
+	public DbSet<Request> Requests { get; set; }
+
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
@@ -73,5 +75,8 @@ public class AppDbContext : IdentityDbContext<User>
 			.HasOne(x => x.Hackathon);
 		modelBuilder.Entity<HackathonSolution>()
 			.HasOne(x => x.Hackathon);
+
+		modelBuilder.Entity<Request>()
+			.HasOne(x => x.User);
 	}
 }
