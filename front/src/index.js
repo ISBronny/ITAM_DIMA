@@ -13,6 +13,7 @@ import RouteGuard from "./components/auth/RouteGuard";
 import {CreateHackathonPage} from "./pages/CreateHackathonPage";
 import {TeamDescriptionPage} from "./pages/TeamDescriptionPage"
 import {HackathonDescriptionPage} from "./pages/HackatonDescriptionPage";
+import {RequestsPage} from "./pages/RequestsPage";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
                 path:"/profile",
                 element: <RouteGuard forAdmin={false} component={ProfilePage}/>,
 
+            },
+            {
+                path:"/requests",
+                element: <RouteGuard forAdmin={true} component={RequestsPage}/>,
             },
             {
                 path:"/registration",

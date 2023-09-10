@@ -12,9 +12,11 @@ services:
       ASPNETCORE_ENVIRONMENT: "Development"
       ConnectionStrings__Postgres: "User ID=postgres;Password=itampassword123;Host=postgres;Port=5432;"
     ports:
-      - "5080:5080"
+      - "5080:80"
+      - "5080:443"
     depends_on:
       - "postgres"
+      - "minio"
     networks:
       - itam-dima-network
 

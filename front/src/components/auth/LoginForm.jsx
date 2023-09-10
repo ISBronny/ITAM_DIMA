@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {setAuthToken} from "./RouteGuard";
 import {useNavigate} from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
 
 export const LoginForm = () => {
     let [state, setState] = useState({
@@ -11,13 +12,15 @@ export const LoginForm = () => {
 
     let [redirectState, setRedirectState] = useState(false);
 
+    const notify = (data) => toast(data);
+
     const navigate = useNavigate();
 
     useEffect(() => {
         if (redirectState) {
             navigate('/');
         }
-    }, [redirectState]);
+    }, [navigate, redirectState]);
 
     return (
         <>
@@ -63,8 +66,9 @@ export const LoginForm = () => {
 
                                         onClick={event => {
                                             event.preventDefault()
-                                        axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, state)
+                                            axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, state)
                                             .catch(function (error) {
+                                                notify("Неверный логин или пароль")
                                                 if (error.response) {
                                                     console.log(error.response.data);
                                                     console.log(error.response.status);

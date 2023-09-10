@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {setAuthToken} from "./RouteGuard";
+import {toast} from "react-toastify";
 
 export const RegisterForm = () => {
     let [state, setState] = useState({
@@ -10,6 +11,8 @@ export const RegisterForm = () => {
         password: '',
         confirmPassword: ''
     })
+
+    const notify = (data) => toast(data);
 
     let [redirectState, setRedirectState] = useState(false);
 
@@ -104,7 +107,11 @@ export const RegisterForm = () => {
                                             event.preventDefault()
                                             axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, state)
                                                 .catch(function (error) {
+
                                                     if (error.response) {
+                                                        Object.keys(error.response.data).forEach(key => {
+                                                            notify(JSON.stringify(error.response.data[key]))
+                                                        });
                                                         console.log(error.response.data);
                                                         console.log(error.response.status);
                                                         console.log(error.response.headers);

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 
 
-export const RequestsTable = ({user= undefined, search= false}) => {
+export const RequestsTable = ({user= undefined, search= false, forAdmin = false}) => {
 
     const [state, setState] = useState({
         isLoading: true,
@@ -28,19 +28,31 @@ export const RequestsTable = ({user= undefined, search= false}) => {
                         name: "Выдача VDS",
                         createdAt: new Date().toISOString(),
                         status: "pending",
-                        responsible: "@HackBot"
+                        responsible: "@HackBot",
+                        participant:{
+                            name:  "Antonette Keeling",
+                            login: "TestUser1"
+                        },
                     },
                     {
                         name: "Доступ к облачным вычислениям",
                         createdAt: new Date().toISOString(),
                         status: "pending",
-                        responsible: "@HackBot"
+                        responsible: "@HackBot",
+                        participant:{
+                            name:  "Antonette Keeling",
+                            login: "TestUser1"
+                        },
                     },
                     {
                         name: "Не работет бот",
                         createdAt: new Date().toISOString(),
                         status: "done",
-                        responsible: "@HackBot"
+                        responsible: "@HackBot",
+                        participant:{
+                            name:  "Antonette Keeling",
+                            login: "TestUser1"
+                        },
                     }
                 ]
 
@@ -72,7 +84,7 @@ export const RequestsTable = ({user= undefined, search= false}) => {
                             <input type="text"
                                    id="table-search"
                                    className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                   placeholder="Поиск команды"
+                                   placeholder="Поиск"
                                    onChange={event => setState({...state, filter: event.currentTarget.value})}
                             />
                         </div>
@@ -85,6 +97,12 @@ export const RequestsTable = ({user= undefined, search= false}) => {
                             className="p-4">
                             Название
                         </th>
+                        {
+                            forAdmin ? <th scope="col"
+                                           className="px-6 py-3">
+                                Участник
+                            </th> : ""
+                        }
                         <th scope="col"
                             className="px-6 py-3">
                            Дата создания
@@ -103,12 +121,18 @@ export const RequestsTable = ({user= undefined, search= false}) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {state.isLoading ? <tr></tr> : state.requests.map(r =>
+                    {state.isLoading ? <tr></tr> : state.requests.filter(r=>r.name.startsWith(state.filter)).map(r =>
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {r.name}
                             </th>
+                            {
+                                forAdmin ? <th scope="col"
+                                               className="px-6 py-3">
+                                    <NavLink to={`/participant/${r.participant.login}`} className="hover:underline"> {r.participant.name}</NavLink>
+                                </th> : ""
+                            }
                             <td className="px-6 py-4">
                                 {new Date(Date.parse(r.createdAt)).toLocaleDateString()}
                             </td>

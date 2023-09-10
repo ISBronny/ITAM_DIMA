@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {TeamsTable} from "../components/TeamsTable";
 import {HacksTable} from "../components/HacksTable";
-import {getCurrentUseLogin} from "../components/auth/RouteGuard";
+import {getCurrentUseLogin, isAdmin} from "../components/auth/RouteGuard";
 import {RequestsTable} from "../components/RequestsTable";
 
 export const ProfilePage = () => {
@@ -71,7 +71,7 @@ export const ProfilePage = () => {
                             </div>
                         </div>
                     </div>
-                    {id === undefined || id === getCurrentUseLogin() ?
+                    {id === undefined || id === getCurrentUseLogin() || isAdmin() ?
                     <div className="col-span-6 h-96">
                         <div className="w-full max-h-full h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-x-hidden overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-900">
                             <RequestsTable/>
