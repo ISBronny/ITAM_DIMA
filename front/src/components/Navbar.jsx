@@ -2,7 +2,7 @@ import {
     createBrowserRouter, Link, NavLink, Outlet,
     RouterProvider, useNavigate,
 } from "react-router-dom";
-import {isAuthorized} from "./auth/RouteGuard";
+import {isAdmin, isAuthorized} from "./auth/RouteGuard";
 import {useEffect, useState} from "react";
 import "../styles/main.css"
 
@@ -66,18 +66,22 @@ export const Navbar = () => {
                                                  ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                                                  : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium "
                                          }>Участники</NavLink>
-                                <NavLink to={"/teams3"}
-                                         className={({ isActive, isPending }) =>
-                                             isActive
-                                                 ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                                                 : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium "
-                                         }>Запросы</NavLink>
-                                <NavLink to={"/profile"}
-                                         className={({ isActive, isPending }) =>
-                                             isActive
-                                                 ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                                                 : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium "
-                                         }>Профиль</NavLink>
+                                {
+                                    isAdmin() ? <NavLink to={"/requests"}
+                                                         className={({ isActive, isPending }) =>
+                                                             isActive
+                                                                 ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                                                                 : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium "
+                                                         }>Запросы</NavLink> : ""
+                                }
+                                {
+                                    !isAdmin() ?  <NavLink to={"/profile"}
+                                                           className={({ isActive, isPending }) =>
+                                                               isActive
+                                                                   ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                                                                   : "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium "
+                                                           }>Профиль</NavLink> : ""
+                                }
                             </div>
                         </div>
                     </div>
