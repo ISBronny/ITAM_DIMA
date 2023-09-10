@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
+import "../styles/main.css"
 
 
 export const TeamsTable = ({user= null, search= true}) => {
@@ -30,6 +31,11 @@ export const TeamsTable = ({user= null, search= true}) => {
 
     return (
         <>
+            <>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=M+PLUS+Rounded+1c:wght@700&family=Overpass:wght@500&display=swap');
+                </style>
+            </>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 {search ?                 <div className="pb-4 bg-white dark:bg-gray-900">
                         <label htmlFor="table-search"
@@ -58,7 +64,7 @@ export const TeamsTable = ({user= null, search= true}) => {
                     </div>
                     : ""}
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <thead className="comforta text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col"
                             className="p-4">
@@ -88,7 +94,7 @@ export const TeamsTable = ({user= null, search= true}) => {
                     </thead>
                     <tbody>
                     {state.isLoading ? <tr></tr> : state.teams.filter(h=>h.name.startsWith(state.filter)).map(h =>
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <tr className="comforta bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {h.name}
