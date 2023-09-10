@@ -34,25 +34,25 @@ export const TeamDescriptionPage =()=> {
                     <div className="col-span-6 lg:col-span-2">
                         <div className="px-4 shadow rounded-lg sm:px-6 md:px-8 pt-5 pb-11 w-full sm:border-r border-gray-800 bg-gray-800">
                             <div>
-                                <p className="text-xl font-bold leading-none text-white">{state.group.name}</p>
+                                <p className="text-center text-3xl font-bold leading-none text-white">{state.group.name}</p>
                                 <div className="flex justify-between">
                                     <div
                                         className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-                                        <div className="grid grid-cols-2 row-gap-12 md:grid-cols-3">
+                                        <div className="grid grid-cols-2 row-gap-8 md:grid-cols-3">
                                             <div className="text-center md:border-r">
-                                                <h6 className="text-4xl font-bold lg:text-5xl xl:text-2xl text-gray-100">144K</h6>
+                                                <h6 className="text-2xl font-bold text-gray-100">144K</h6>
                                                 <p className="text-sm font-medium tracking-widest text-gray-400 uppercase lg:text-base">
                                                     Победы
                                                 </p>
                                             </div>
                                             <div className="text-center md:border-r">
-                                                <h6 className="text-4xl font-bold lg:text-5xl xl:text-2xl text-gray-100">12.9K</h6>
+                                                <h6 className="text-2xl font-bold text-gray-100">12.9K</h6>
                                                 <p className="text-sm font-medium tracking-widest text-gray-400 uppercase lg:text-base">
                                                     Призёрства
                                                 </p>
                                             </div>
                                             <div className="text-center">
-                                                <h6 className="text-4xl font-bold lg:text-5xl xl:text-2xl text-gray-100">48.3K</h6>
+                                                <h6 className="text-2xl font-bold text-gray-100">48.3K</h6>
                                                 <p className="text-sm font-medium tracking-widest text-gray-400 uppercase lg:text-base">
                                                     Участия
                                                 </p>
