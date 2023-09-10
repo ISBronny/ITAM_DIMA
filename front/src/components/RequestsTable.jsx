@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
+import {toast} from "react-toastify";
 
 
 export const RequestsTable = ({user= undefined, search= false, forAdmin = false}) => {
@@ -10,53 +11,22 @@ export const RequestsTable = ({user= undefined, search= false, forAdmin = false}
         filter: '',
     });
 
+    const notify = data => toast(data);
+
     useEffect(() => {
         if (state.isLoading)
-            /*fetch(`${process.env.REACT_APP_BACKEND_URL}/hackathon/user/${user}`, {
+            fetch(user === undefined ?
+                    `${process.env.REACT_APP_BACKEND_URL}/requests` :
+                    `${process.env.REACT_APP_BACKEND_URL}/requests/${user}`
+                , {
                 method: 'get',
             })
+                .catch(x=>notify(JSON.stringify(x)))
                 .then(x => x.json())
                 .then(json => {
-                    setState({...state, isLoading: false, hacks: json})
+                    setState({...state, isLoading: false, requests: json})
                 })
-                .catch(x => console.log(x))*/
-            setState({
-                ...state,
-                isLoading: false,
-                requests: [
-                    {
-                        name: "Выдача VDS",
-                        createdAt: new Date().toISOString(),
-                        status: "pending",
-                        responsible: "@HackBot",
-                        participant:{
-                            name:  "Antonette Keeling",
-                            login: "TestUser1"
-                        },
-                    },
-                    {
-                        name: "Доступ к облачным вычислениям",
-                        createdAt: new Date().toISOString(),
-                        status: "pending",
-                        responsible: "@HackBot",
-                        participant:{
-                            name:  "Antonette Keeling",
-                            login: "TestUser1"
-                        },
-                    },
-                    {
-                        name: "Не работет бот",
-                        createdAt: new Date().toISOString(),
-                        status: "done",
-                        responsible: "@HackBot",
-                        participant:{
-                            name:  "Antonette Keeling",
-                            login: "TestUser1"
-                        },
-                    }
-                ]
-
-            })
+                .catch(x=>notify(JSON.stringify(x)))
 
     }, [state, user]);
 
@@ -111,10 +81,7 @@ export const RequestsTable = ({user= undefined, search= false, forAdmin = false}
                             className="px-6 py-3">
                            Статус
                         </th>
-                        <th scope="col"
-                            className="px-6 py-3">
-                            Ответственный
-                        </th>
+
                         <th scope="col"
                             className="px-6 py-3">
                         </th>
@@ -130,17 +97,14 @@ export const RequestsTable = ({user= undefined, search= false, forAdmin = false}
                             {
                                 forAdmin ? <th scope="col"
                                                className="px-6 py-3">
-                                    <NavLink to={`/participant/${r.participant.login}`} className="hover:underline"> {r.participant.name}</NavLink>
+                                    <NavLink to={`/participant/${r.user.telegram}`} className="hover:underline"> {r.user.fullName}</NavLink>
                                 </th> : ""
                             }
                             <td className="px-6 py-4">
                                 {new Date(Date.parse(r.createdAt)).toLocaleDateString()}
                             </td>
                             <td className="px-6 py-4">
-                                {r.status === "pending" ? "Ждет обработки" : "Готово"}
-                            </td>
-                            <td className="px-6 py-4">
-                                {r.responsible}
+                                {getStatus(r.status)}
                             </td>
                             <td className="px-6 py-4">
                                 <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/requests/${r.id}`}>Запрос</NavLink>
@@ -152,4 +116,17 @@ export const RequestsTable = ({user= undefined, search= false, forAdmin = false}
             </div>
         </>
     )
+}
+
+function getStatus(n){
+    switch (n){
+        case 1:
+            return "Ожидает"
+        case 2:
+            return "В обработке"
+        case 3:
+            return "Готово"
+        default:
+            return "Неизвестно";
+    }
 }
