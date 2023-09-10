@@ -56,15 +56,15 @@ export const TeamsTable = ({user= null, search= true}) => {
                             </div>
                             <input type="text"
                                    id="table-search"
-                                   className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                   className="comforta block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                    placeholder="Поиск команды"
                                    onChange={event => setState({...state, filter: event.currentTarget.value})}
                             />
                         </div>
                     </div>
                     : ""}
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="comforta text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table className="comforta w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className=" text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col"
                             className="p-4">
