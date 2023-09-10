@@ -36,7 +36,7 @@ export const TeamsTable = ({user= null, search= true}) => {
                     @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=M+PLUS+Rounded+1c:wght@700&family=Overpass:wght@500&display=swap');
                 </style>
             </>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg scrollbar-thin">
                 {search ?                 <div className="pb-4 bg-white dark:bg-gray-900">
                         <label htmlFor="table-search"
                                className="sr-only">Search</label>
@@ -63,7 +63,7 @@ export const TeamsTable = ({user= null, search= true}) => {
                         </div>
                     </div>
                     : ""}
-                <table className="comforta w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="comforta w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
                     <thead className=" text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col"

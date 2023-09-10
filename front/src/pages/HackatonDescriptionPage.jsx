@@ -152,7 +152,7 @@ function chunkify(a, n, balanced) {
 const Winners = ({results}) => {
     return (
         <>
-            <div className="col-span-2 h-72 mt-20">
+            <div className="col-span-6 md:col-span-2 h-72 mt-20">
 
                 <WinnerCard
                     place={2}
@@ -162,7 +162,7 @@ const Winners = ({results}) => {
                     teamId={results.secondPlace.team.id}
                 />
             </div>
-            <div className="col-span-2 h-72">
+            <div className="col-span-6 md:col-span-2 h-72">
                 <WinnerCard
                     place={1}
                     link={results.firstPlace.link}
@@ -172,7 +172,7 @@ const Winners = ({results}) => {
 
                 />
             </div>
-            <div className="col-span-2 h-72 mt-40">
+            <div className="col-span-6 md:col-span-2 h-72 mt-40">
                 <WinnerCard
                     place={3}
                     link={results.thirdPlace.link}
@@ -188,7 +188,7 @@ const Winners = ({results}) => {
 const WinnerCard = ({place, teamName, teamId, link, description}) => {
 
     return (
-        <div className="w-full max-h-full px-6 h-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
+        <div className="w-full px-6 min-h-[250px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
             <h5 className="text-center mb-1 mt-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{place} место</h5>
             <NavLink className="mb-2 text-3xl font-medium text-gray-900 dark:text-white hover:underline"
                      to={`/team/${teamId}`}>{teamName}</NavLink>
