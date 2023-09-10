@@ -152,8 +152,17 @@ function chunkify(a, n, balanced) {
 const Winners = ({results}) => {
     return (
         <>
-            <div className="col-span-6 md:col-span-2 h-72 mt-20">
+            <div className="col-span-6 md:col-span-2 h-72 ">
 
+                <WinnerCard
+                    place={1}
+                    link={results.firstPlace.link}
+                    teamName={results.firstPlace.team.name}
+                    description={results.firstPlace.description}
+                    teamId={results.firstPlace.team.id}
+                />
+            </div>
+            <div className="col-span-6 md:col-span-2 h-72">
                 <WinnerCard
                     place={2}
                     link={results.secondPlace.link}
@@ -162,17 +171,7 @@ const Winners = ({results}) => {
                     teamId={results.secondPlace.team.id}
                 />
             </div>
-            <div className="col-span-6 md:col-span-2 h-72">
-                <WinnerCard
-                    place={1}
-                    link={results.firstPlace.link}
-                    teamName={results.firstPlace.team.name}
-                    description={results.firstPlace.description}
-                    teamId={results.firstPlace.team.id}
-
-                />
-            </div>
-            <div className="col-span-6 md:col-span-2 h-72 mt-40">
+            <div className="col-span-6 md:col-span-2 h-72 ">
                 <WinnerCard
                     place={3}
                     link={results.thirdPlace.link}
