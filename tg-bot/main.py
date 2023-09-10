@@ -101,7 +101,7 @@ def reg6(message):
         bot.register_next_step_handler(message, reg4)
         return
     data_r["passwordConfirm"] = message.text
-    url = 'http://localhost:5080/register'
+    url = f'{API_BASE_URL}/register'
     response = requests.post(url, json=data_r)
 
     # Проверяем, был ли запрос успешным (код ответа 200)
