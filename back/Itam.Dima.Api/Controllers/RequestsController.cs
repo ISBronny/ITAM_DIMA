@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using Itam.Dima.Domain.Models;
 using Itam.Dima.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
