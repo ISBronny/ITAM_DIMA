@@ -88,7 +88,10 @@ export const TeamsTable = ({user= null, search= true}) => {
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
-
+                            Участники
+                        </th>
+                        <th scope="col"
+                            className="px-6 py-3">
                         </th>
                     </tr>
                     </thead>
@@ -112,6 +115,14 @@ export const TeamsTable = ({user= null, search= true}) => {
                             </td>
                             <td className="px-6 py-4">
                                 {0}
+                            </td>
+                            <td className="px-6 py-4">
+                                <div className="flex items-center">
+                                    <img className="shadow-md w-8 h-8 rounded-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png" />
+                                    <img className="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(9).png" />
+                                    <img className="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(10).png" />
+                                    <img className="shadow-md w-8 h-8 rounded-full -ml-2" src="https://cdn.tuk.dev/assets/templates/olympus/projects(11).png" />
+                                </div>
                             </td>
                             <td className="px-6 py-4">
                                 <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/team/${h.id}`}>Профиль</NavLink>
