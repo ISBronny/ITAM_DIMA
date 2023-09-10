@@ -5,6 +5,7 @@ import {TeamsTable} from "../components/TeamsTable";
 import {ParticipantsTable} from "../components/ParticipantsTable";
 
 
+
 export const TeamDescriptionPage =()=> {
     let {id} = useParams();
 
@@ -12,6 +13,7 @@ export const TeamDescriptionPage =()=> {
         isLoading: true,
         user: {},
     });
+
 
     useEffect(() => {
         if (state.isLoading)
