@@ -52,7 +52,7 @@ export const Navbar = () => {
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex flex-shrink-0 items-center">
-                            <img src={require('../assets/images/itam_logo.png')} alt="logo" className="brand-logo h-10 w-auto"/>
+                            <img src={require('../assets/images/IT1.png')} alt="logo" className="brand-logo h-10 w-auto"/>
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="mt-0.5 montessrat flex space-x-4">
