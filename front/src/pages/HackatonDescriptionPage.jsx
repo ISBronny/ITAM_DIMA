@@ -92,11 +92,12 @@ const TeamCard = ({team}) => {
                         <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
                         <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
                     </div> :
-                    <div className="w-full max-h-full px-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
+                    <div className="w-full max-h-full px-6 pb-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
                         <NavLink className="mb-2 text-2xl text-center mt-4 font-medium text-gray-900 dark:text-white hover:underline"
                                  to={`/team/${team.id}`}>{state.team.name}</NavLink>
-                        {state.team.members.map(m=> <div>
-                                <p className="text-center text-sm mb-2 text-gray-500 dark:text-gray-400">{m.fullName}</p>
+                        <NavLink to={`/participant/${state.team.leader.telegram}`} className="hover:underline text-center text-lg mb-2 text-gray-500 dark:text-gray-400">{state.team.leader.fullName}</NavLink>
+                        {state.team.members.filter(m => m.telegram !== state.team.leader.telegram).map(m=> <div>
+                            <NavLink  to={`/participant/${m.telegram}`} className="hover:underline text-center text-sm mb-2 text-gray-500 dark:text-gray-400">{m.fullName}</NavLink>
                             </div>)
                         }
                     </div>

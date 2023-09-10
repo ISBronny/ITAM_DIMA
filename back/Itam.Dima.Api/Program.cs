@@ -129,7 +129,7 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 		var users = Enumerable.Range(0, 40).Select(i => new User()
 		{
 			UserName = $"TestUser{i}",
-			FullName = "Тест Тестович",
+			FullName = Faker.Name.FullName(),
 			Telegram = $"TestUser{i}",
 			Type = UserType.Participant
 		}).ToList();
@@ -140,23 +140,24 @@ using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>(
 		
 		context.Teams.AddRange(context.Users.Where(x=>x.Type == UserType.Participant).ToList().ChunkRandom(5).Select((members, i) =>
 		{
+			var enumerable = members as User[] ?? members.ToArray();
 			var team = new Team()
 			{
 				Id = Guid.NewGuid(),
-				Leader = members.First(),
-				Members = members.Skip(1).ToList(),
+				Leader = enumerable.First(),
+				Members = enumerable.Skip(1).ToList(),
 				Name = Faker.Company.Name(),
 				CreatedAt = DateTime.UtcNow,
 			};
 				
-			members.First().Teams.Add(team);
+			enumerable.First().Teams.Add(team);
 
 			return team;
 		}));
 
 		await context.SaveChangesAsync();
 
-		foreach (var arr in context.Teams.ToList().OrderBy(_ => Guid.NewGuid()).ChunkRandom(10))
+		foreach (var arr in context.Teams.ToList().OrderBy(_ => Guid.NewGuid()).Chunk(8))
 		{
 			var team = arr.ToArray();
 			if(team.Length < 3)

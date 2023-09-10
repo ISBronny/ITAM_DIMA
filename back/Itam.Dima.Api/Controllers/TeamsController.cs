@@ -21,7 +21,8 @@ public class TeamsController : Controller
 	[AllowAnonymous]
 	public async Task<ActionResult> GetAll()
 	{
-		var teams = await _context.Teams.Include(x => x.Hackathons).Include(team => team.Leader)
+		var teams = await _context.Teams.Include(x => x.Hackathons)
+			.Include(team => team.Leader)
 			.Include(team => team.Members)
 			.OrderBy(x=>x.Name)
 			.ToListAsync();
@@ -94,7 +95,6 @@ public class TeamsController : Controller
 			Name = request.Name,
 			Leader = leader,
 			Members = members,
-			
 		});
 
 		await _context.SaveChangesAsync();

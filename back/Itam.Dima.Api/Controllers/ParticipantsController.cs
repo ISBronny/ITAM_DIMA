@@ -88,7 +88,7 @@ public class ParticipantsController : Controller
 			.Include(x=>x.Members)
 			.FirstAsync(x => x.Id == id);
 
-		return Ok(t.Members.Concat(new[] { t.Leader }).Select(x => new
+		return Ok(t.Members.Select(x => new
 		{
 			name = x.FullName,
 			id = x.Id,
