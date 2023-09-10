@@ -116,12 +116,10 @@ export const TeamsTable = ({user= null, search= true}) => {
                             <td className="px-6 py-4">
                                 {0}
                             </td>
-                            <td className="px-6 py-4">
-                                <div className="flex items-center">
-                                    <ParticipantRoundLogo members={h.members}/>
-                                </div>
-                            </td>
-                            <td className="px-2 py-1">
+                            <div className="flex items-center">
+                                <ParticipantRoundLogo members={h.members}/>
+                            </div>
+                            <td className="px-6 py-1">
                                 <NavLink className="font-medium text-blue-600 dark:text-blue-500 hover:underline" to={`/team/${h.id}`}>Профиль</NavLink>
                             </td>
                         </tr>
