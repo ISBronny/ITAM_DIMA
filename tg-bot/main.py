@@ -42,11 +42,12 @@ def start(message):
 \t/ls <i>"текст"</i> - рассылка всем в лс(только админы)
 \t/chats <i>"текст"</i> - рассылка в чаты(нужно закинуть бота в чат и прописать /start) (только админы)
 \t/group <i>"текст"</i> - рассылка в тг канал(нужно  быть админом и ручками добавить id канала) (только админы)
-\t/support <i>"текст"</i> - вопрос организатору(участники)"""
+\t/support <i>"текст"</i> - вопрос организатору(участники)
+\t/answer <i>@UserName "текст"</i>"""
     bot.send_message(message.chat.id, mes, parse_mode='html')
 
     if not message.chat.id in hash_table.keys():
-        hash_table[message.chat.id] = message.chat.id
+        hash_table[message.chat.id] = message.from_user.username
         with open('users.json', 'w') as file:
             json.dump(hash_table, file)
     print('start')
@@ -262,6 +263,7 @@ def ls(message):
         for key in id_groups:
             if key < 0:
                 bot.send_message(key, mes, parse_mode='html')
+
 @bot.message_handler(commands=['support'])
 def support(message):
     for key in id_admin:
@@ -272,5 +274,37 @@ def support(message):
         mes =f"""Вопрос от {q}:
 \t{new_string}"""
         bot.send_message(key, mes, parse_mode='html')
+
+@bot.message_handler(commands=['answer'])
+def answer(message):
+
+    words = message.text.split()
+    ans_ = words[1]
+    new_string = ans_[1:]
+    check = False
+    key_id = 0
+    with open('users.json', 'r') as json_file:
+        # Загружаем содержимое файла в словарь
+        users_ = json.load(json_file)
+    for key, value in users_.items():
+        if int(key) > 0 and value == new_string:
+            key_id = key
+            check = True
+            break
+
+    if key_id != 0 and check:
+        words = message.text.split()
+        words.pop(0)
+        words.pop(0)
+        new_string = ' '.join(words)
+        ans = f"""Ответ на ваш вопрос: {new_string}"""
+        bot.send_message(key_id, ans, parse_mode='html')
+    else:
+        ans = 'Такого пользователя нет'
+        bot.send_message(message.chat.id, ans, parse_mode='html')
+        return
+
+
+
 bot.polling(none_stop=True)
 
