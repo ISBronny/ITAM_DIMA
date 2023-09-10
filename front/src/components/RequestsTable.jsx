@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import {toast} from "react-toastify";
 import "../styles/main.css"
 
+
 export const RequestsTable = ({user= undefined, search= false, forAdmin = false}) => {
 
     const [state, setState] = useState({
