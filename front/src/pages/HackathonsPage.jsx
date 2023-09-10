@@ -35,35 +35,35 @@ export const HackathonsPage = () => {
 
             <div>
                 {state.isLoading ? "" : state.hacks.map(h => <HackathonCard
+                    id={h.id}
                     name={h.name}
                     description={h.description}
-                    imageUrl={`${process.env.REACT_APP_BACKEND_URL}/images/${h.imageObjectName}`}
+                    imageUrl={h.imageObjectName !=="" ? `${process.env.REACT_APP_BACKEND_URL}/images/${h.imageObjectName}` : undefined}
                 />)}
             </div>
         </>
     )
 }
 
-const HackathonCard = ({name, description, imageUrl}) => {
+const HackathonCard = ({id, name, description, imageUrl}) => {
     return (
         <>
             <div className="mx-auto min-w-full m-5 max-w-xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <img className="rounded-t-lg mx-auto w-full object-cover h-96"
-                     src={!imageUrl ? imageUrl : "https://images.wallpaperscraft.ru/image/single/fon_temnyj_piatna_51861_1920x1080.jpg"}
+                     src={ imageUrl!==undefined ? imageUrl : "https://images.wallpaperscraft.ru/image/single/fon_temnyj_piatna_51861_1920x1080.jpg"}
                      alt=""/>
                 <div className="px-5 pt-5">
-                    <a href="#">
+                    <a href={`hackathon/${id}`}>
                         <h5 className="text-center mb-3 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
                     </a>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
                 </div>
                 <div className="flex justify-center mb-5">
-                    <a href="#"
+                    <NavLink to={`hackathon/${id}`}
                        className=" items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Зарегистрироваться
-                    </a>
+                    </NavLink>
                 </div>
-
             </div>
         </>
     )
