@@ -82,7 +82,7 @@ export const RegisterForm = () => {
                                     <label htmlFor="confirm-password"
                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Подтверждение
                                         пароля</label>
-                                    <input type="confirm-password"
+                                    <input type="password"
                                            name="confirm-password"
                                            id="confirm-password"
                                            placeholder="••••••••"
