@@ -87,7 +87,7 @@ export const ParticipantsTable = ({search= true, teamId = undefined}) => {
                     </thead>
                     <tbody>
                     {state.isLoading ? <tr></tr> : state.participants.filter(h=>h.name.startsWith(state.filter)).map(h =>
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <tr className="comforta bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {h.name}
