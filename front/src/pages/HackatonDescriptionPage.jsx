@@ -197,7 +197,7 @@ const WinnerCard = ({place, teamName, teamId, link, description}) => {
                     <div></div>
                 )}
                 {place === 2 ? (
-                    <h5 className="text-center mb-1 mt-3 text-xl font-bold tracking-tight text-gray-900 dark:text-neutral-300">
+                    <h5 className="text-center mb-1 mt-3 text-xl font-bold tracking-tight text-gray-900 dark:text-stone-400">
                         {place} место
                     </h5>
                 ) : (
