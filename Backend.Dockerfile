@@ -8,11 +8,11 @@ COPY back/Itam.Dima.Api/*.csproj ./back/Itam.Dima.Api/
 COPY back/Itam.Dima.Domain/*.csproj ./back/Itam.Dima.Domain/
 COPY back/Itam.Dima.Infrastructure/*.csproj ./back/Itam.Dima.Infrastructure/
 
-RUN dotnet restore Itam.Dima.sln
+RUN dotnet restore Itam.Dima.sln -r linux-x64
 
 # copy everything else and build app
 COPY back/. ./back/
-RUN dotnet publish --self-contained false -c Release --no-restore --property:PublishDir=/app/publish
+RUN dotnet publish --self-contained false -c Release --no-restore --property:PublishDir=/app/publish -r linux-x64
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0

@@ -113,6 +113,6 @@ public class TeamsController : Controller
 
 		await _context.SaveChangesAsync();
 
-		return Ok(team);
+		return Ok();
 	}
 }
