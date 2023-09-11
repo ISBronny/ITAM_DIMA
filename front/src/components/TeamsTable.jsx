@@ -65,8 +65,9 @@ export const TeamsTable = ({user= null, search= true}) => {
                         </div>
                     </div>
                     : ""}
-                <table className="comforta w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-                    <thead className=" text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <div className="w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-900">
+                <table className="comforta w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col"
                             className="p-4">
@@ -126,6 +127,7 @@ export const TeamsTable = ({user= null, search= true}) => {
                     )}
                     </tbody>
                 </table>
+                </div>
             </div>
         </>
     )
