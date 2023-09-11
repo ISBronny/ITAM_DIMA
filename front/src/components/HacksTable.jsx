@@ -63,7 +63,7 @@ export const HacksTable = ({user, search= false}) => {
                     <tr>
                         <th scope="col"
                             className="p-4">
-                            Название хакаотна
+                            Название хакатона
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
@@ -94,7 +94,7 @@ export const HacksTable = ({user, search= false}) => {
                                 {new Date(Date.parse(h.startDate)).toLocaleDateString()} - {new Date(Date.parse(h.endDate)).toLocaleDateString()}
                             </td>
                             <td className="px-6 py-4">
-                                {h.role === "leader" ? "Лидер" : "Учатсник"}
+                                {h.role === "leader" ? "Лидер" : "Участник"}
                             </td>
                             <td className="px-6 py-4">
                                 Нет
