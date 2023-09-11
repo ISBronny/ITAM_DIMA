@@ -94,7 +94,45 @@ export const RequestsTable = ({user= undefined, search= false, forAdmin = false}
                     </tr>
                     </thead>
                     <tbody>
-                    {state.isLoading ? <tr></tr> : state.requests.filter(r=>r.name.startsWith(state.filter)).map(r =>
+                    {state.isLoading ?
+                        <div role="status" className="p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-96 mb-2.5"></div>
+                                    <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                                </div>
+                                <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                            </div>
+                            <div className="flex items-center justify-between pt-4">
+                                <div>
+                                    <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                                    <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                                </div>
+                                <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                            </div>
+                            <div className="flex items-center justify-between pt-4">
+                                <div>
+                                    <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                                    <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                                </div>
+                                <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                            </div>
+                            <div className="flex items-center justify-between pt-4">
+                                <div>
+                                    <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                                    <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                                </div>
+                                <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                            </div>
+                            <div className="flex items-center justify-between pt-4">
+                                <div>
+                                    <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                                    <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                                </div>
+                                <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                            </div>
+                            <span className="sr-only">Loading...</span>
+                        </div>: state.requests.filter(r=>r.name.startsWith(state.filter)).map(r =>
                         <tr className="comforta bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
