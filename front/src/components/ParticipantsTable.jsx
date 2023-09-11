@@ -60,7 +60,7 @@ export const ParticipantsTable = ({search= true, teamId = undefined}) => {
                         </div>
                     </div>
                     : ""}
-                <div className="w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-900">
+                <div className="overflow-hidden w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="comforta text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
