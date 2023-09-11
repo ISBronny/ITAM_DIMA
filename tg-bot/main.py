@@ -25,7 +25,7 @@ for key, value in data.items():
 # id admin, нужно вставить свой
 # id групп
 id_groups = []
-id_admin = [641909711]
+id_admin = []
 
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
@@ -57,6 +57,7 @@ def start(message):
 @bot.message_handler(commands=['register'])
 def reg(message):
     global data_r
+    global url
     url = f'{API_BASE_URL}/register'  # Используйте переменную окружения для URL
     data_r = {
         "fullName": "",
@@ -98,10 +99,10 @@ def reg6(message):
     if message.text != data_r["password"]:
         mes = f"""Пароли не совпадают:"""
         bot.send_message(message.chat.id, mes, parse_mode='html')
-        bot.register_next_step_handler(message, reg4)
+        bot.register_next_step_handler(message, reg5)
         return
     data_r["passwordConfirm"] = message.text
-    url = f'{API_BASE_URL}/register'
+
     response = requests.post(url, json=data_r)
 
     # Проверяем, был ли запрос успешным (код ответа 200)
@@ -116,7 +117,7 @@ def reg6(message):
 def create_team(message):
     global data_c_t
     global url
-    url = f'{API_BASE_URL}/team'
+    url = f'{API_BASE_URL}/teams'
     data_c_t = {
   "name": "",
   "leaderUserName": "",
