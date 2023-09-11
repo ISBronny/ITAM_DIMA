@@ -134,7 +134,7 @@ def create_team_name(message):
 \t@Name1
 \t@Name2
 \t/stop"""
-    data_c_t["leaderUserName"] = message.from_user.username
+    data_c_t["leaderUserName"] = '@'+message.from_user.username
     bot.send_message(message.chat.id, mes, parse_mode='html')
     bot.register_next_step_handler(message, create_team_member1)
 
@@ -152,7 +152,7 @@ def create_team_member1(message):
             mes = f"""Такая команда уже есть."""
             bot.send_message(message.chat.id, mes, parse_mode='html')
             return
-    data_c_t["memberUserNames"].append(message.from_user.username)
+    data_c_t["memberUserNames"].append(message.text)
     mes = 'Вы добавили первого сокомадника.'
     bot.send_message(message.chat.id, mes, parse_mode='html')
 
@@ -170,7 +170,7 @@ def create_team_member2(message):
             mes = f"""Такая команда уже есть."""
             bot.send_message(message.chat.id, mes, parse_mode='html')
             return
-    data_c_t["memberUserNames"].append(message.from_user.username)
+    data_c_t["memberUserNames"].append(message.text)
     mes = 'Вы добавили второго сокомадника.'
     bot.send_message(message.chat.id, mes, parse_mode='html')
 
@@ -188,7 +188,7 @@ def create_team_member3(message):
             mes = f"""Такая команда уже есть."""
             bot.send_message(message.chat.id, mes, parse_mode='html')
             return
-    data_c_t["memberUserNames"].append(message.from_user.username)
+    data_c_t["memberUserNames"].append(message.text)
     mes = 'Вы добавили третьего сокомадника.'
     bot.send_message(message.chat.id, mes, parse_mode='html')
 
@@ -207,7 +207,7 @@ def create_team_member4(message):
             mes = f"""Такая команда уже есть."""
             bot.send_message(message.chat.id, mes, parse_mode='html')
             return
-    data_c_t["memberUserNames"].append(message.from_user.username)
+    data_c_t["memberUserNames"].append(message.text)
     response = requests.post(url, json=data_c_t)
     if response.status_code == 200:
         mes = 'Вы добавили четвертого сокомадника. В команде теперь 5 участников.'
