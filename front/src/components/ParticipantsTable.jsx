@@ -87,7 +87,12 @@ export const ParticipantsTable = ({search= true, teamId = undefined}) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {state.isLoading ? <tr></tr> : state.participants.filter(h=>h.name.startsWith(state.filter)).map(h =>
+                    {state.isLoading ?
+                        <div role="status" className="max-w-sm animate-pulse">
+                            <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-96 mb-2.5"></div>
+                            <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-96 mb-2.5"></div>
+                        </div>
+                        : state.participants.filter(h=>h.name.startsWith(state.filter)).map(h =>
                         <tr className="comforta bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
