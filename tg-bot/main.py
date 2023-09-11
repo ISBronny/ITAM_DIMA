@@ -294,6 +294,7 @@ def answer(message):
             check = True
             break
 
+
     if key_id != 0 and check:
         words = message.text.split()
         words.pop(0)
