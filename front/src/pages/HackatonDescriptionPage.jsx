@@ -187,13 +187,35 @@ const Winners = ({results}) => {
 const WinnerCard = ({place, teamName, teamId, link, description}) => {
 
     return (
-        <div className="w-full px-6 min-h-[250px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
-            <h5 className="text-center mb-1 mt-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{place} место</h5>
-            <NavLink className="mb-2 text-3xl font-medium text-gray-900 dark:text-white hover:underline"
-                     to={`/team/${teamId}`}>{teamName}</NavLink>
-            <a href={link}
-               className="mb-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>
-            <p className="text-center text-sm mb-2 text-gray-500 dark:text-gray-400">{description}</p>
-        </div>
+        <>
+            <div className="w-full px-6 min-h-[250px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col items-center">
+                {place === 1 ? (
+                    <h5 className="text-center text-xl text-gray-900 dark:text-yellow-500 mb-1 mt-3 font-bold tracking-tight">
+                        {place} место
+                    </h5>
+                ) : (
+                    <div></div>
+                )}
+                {place === 2 ? (
+                    <h5 className="text-center mb-1 mt-3 text-xl font-bold tracking-tight text-gray-900 dark:text-neutral-300">
+                        {place} место
+                    </h5>
+                ) : (
+                    <div></div>
+                )}
+                {place === 3 ? (
+                    <h5 className="text-center mb-1 mt-3 text-xl font-bold tracking-tight text-gray-900 dark:text-orange-600">
+                        {place} место
+                    </h5>
+                ) : (
+                    <div></div>
+                )}
+                <NavLink className="mb-2 text-3xl font-medium text-gray-900 dark:text-white hover:underline"
+                         to={`/team/${teamId}`}>{teamName}</NavLink>
+                <a href={link}
+                   className="mb-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">GitHub</a>
+                <p className="text-center text-sm mb-2 text-gray-500 dark:text-gray-400">{description}</p>
+            </div>
+        </>
     )
 }
