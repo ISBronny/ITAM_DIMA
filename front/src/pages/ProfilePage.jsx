@@ -36,7 +36,7 @@ export const ProfilePage = () => {
                     <div className="col-span-6 lg:col-span-2 h-96">
                         <div className="w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <div className="flex flex-col items-center pb-10">
-                                <div className="m-3 mt-8 relative inline-flex items-center justify-center w-32 h-32 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <div className="m-3 mt-8 relative inline-flex items-center justify-center w-32 h-32 overflow-hidden rounded-full dark:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                                     <span className="font-medium text-6xl text-gray-600 dark:text-gray-300">{state.user.name.split(' ').slice(0, 2).map(x => x[0])}</span>
                                 </div>
                                 <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{state.user.name}</h5>
@@ -53,7 +53,7 @@ export const ProfilePage = () => {
                         </div>
                     </div>
                     <div className="col-span-6 lg:col-span-4 h-96 ">
-                        <div className="w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-900">
+                        <div className="w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  overflow-x-scroll overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-900">
                             <HacksTable user={id !== undefined ? id : getCurrentUseLogin()}/>
                         </div>
 

@@ -63,7 +63,7 @@ export const HacksTable = ({user, search= false}) => {
                     <tr>
                         <th scope="col"
                             className="p-4">
-                            Название хакаотна
+                            Название хакатона
                         </th>
                         <th scope="col"
                             className="px-6 py-3">
